@@ -35,7 +35,7 @@ def get_name_from_url():
         if isinstance(name, bytes):
             name = name.decode()
     except (TypeError, KeyError):
-        name = 'linker91_CH_linker92_N_clh_relaxed'
+        name = 'TSC'
 
     return name
 

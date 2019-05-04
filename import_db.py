@@ -10,10 +10,10 @@ import sqlalchemy
 import re
 
 folder_db = 'data/'
-structure_folder = folder_db + '/structures/'
+structure_folder = folder_db + '/cifs/'
 structure_extension = 'cif'
 properties_csv = folder_db + '/properties.csv'
-table_name = 'cofs'  # parameters will be put in this database
+table_name = 'cifs'  # parameters will be put in this database
 db_params = 'sqlite:///{}database.db'.format(folder_db)
 
 # when storing structures on an object store
