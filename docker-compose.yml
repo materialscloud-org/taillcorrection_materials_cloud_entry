@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+  bokeh:
+    restart: always
+    build: .
+    image: discover-cofs:master
+    command: ["/opt/serve-app.sh"]
+    environment:
+      PYTHONPATH: '/project'
+      SHELL: '/bin/bash'
+
+    volumes:
+     - './data:/project/discover-cofs/data'
+    ports:
+      - '3245:5006'

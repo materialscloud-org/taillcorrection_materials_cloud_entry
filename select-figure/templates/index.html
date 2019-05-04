@@ -1,0 +1,59 @@
+{% extends base %}
+
+{% block postamble %}
+  <style>
+    {% include "material.indigo-blue.min.css" %}
+    {% include "style.css" %}
+  </style>
+{% endblock %}
+
+{% block contents %}
+<div class="content" >
+<div class="content-float" >
+
+<p>
+  Click on a figure for the <b>interactive plot</b>.
+</p>
+
+<div class="one-column-grid">
+  <div class="grid-item">
+    <figure>
+      <div class="container">
+        <a href="figure">
+          <img class="figure-thumbnail default-figure mdl-card mdl-shadow--2dp main-card" src="select-figure/static/images/default.png">
+          <div class="hover-text">High-performing COFs</div>
+        </a>
+      </div>
+      <figcaption>
+      Deliverable Capacity <i>vs</i> Density
+      </figcaption>
+    </figure>
+  </div>
+</div>
+
+<div class="three-column-grid">
+  {% for fig in figures %}
+  <div class="grid-item">
+    <figure>
+      <div class="container">
+        <a href="figure?preset={{ fig[0] }}">
+          <img class="figure-thumbnail mdl-card mdl-shadow--2dp main-card" src="select-figure/static/images/{{ fig[0] }}.png">
+          <div class="hover-text">Figure {{ fig[0] }}</div>
+        </a>
+      </div>
+      <figcaption>
+        {{ fig[1] }}
+      </figcaption>
+    </figure>
+  </div>
+  {% endfor %}
+
+</div>
+
+<!-- No actual bokeh content to display, but let's keep it here //-->
+{{ super() }}
+
+</div>
+</div>
+
+{% endblock %}
