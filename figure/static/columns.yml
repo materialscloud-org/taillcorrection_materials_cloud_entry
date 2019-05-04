@@ -136,7 +136,7 @@
   label: standard deviation of loading at 5.8 bar and cutoff of 12 A with tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 5.0
   unit: molecules / UC
 
 - column: loading_error_5_8_12_no_tc
@@ -144,7 +144,7 @@
   label: standard deviation of loading at 5.8 bar cutoff of 12 A without tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 5.0
   unit: molecules / UC
 
 - column: loading_error_5_8_20_tc
@@ -152,7 +152,7 @@
   label: standard deviation of loading at 5.8 bar and cutoff of 20 A with tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 5.0
   unit: molecules / UC
 
 - column: loading_error_5_8_20_no_tc
@@ -160,7 +160,7 @@
   label: standard deviation of loading at 5.8 bar cutoff of 20 A without tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 5.0
   unit: molecules / UC
 
 # Loading medium pressure
@@ -203,7 +203,7 @@
   label: standard deviation of loading at 35 bar and cutoff of 12 A with tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 5.0
   unit: molecules / UC
 
 - column: loading_error_35_12_no_tc
@@ -211,7 +211,7 @@
   label: standard deviation of loading at 35 bar cutoff of 12 A without tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 5.0
   unit: molecules / UC
 
 - column: loading_error_35_20_tc
@@ -219,7 +219,7 @@
   label: standard deviation of loading at 35 bar and cutoff of 20 A with tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 5.0
   unit: molecules / UC
 
 - column: loading_error_35_20_no_tc
@@ -227,7 +227,7 @@
   label: standard deviation of loading at 35 bar cutoff of 20 A without tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 5.0
   unit: molecules / UC
 
 # Loading high pressure
@@ -265,20 +265,20 @@
   unit: molecules / UC
 
 # standard deviation
-- column: loading_65_12_tc
+- column: loading_error_65_12_tc
   type: float
   label: standard deviation of loading at 65 bar and cutoff of 12 A with tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 5.0
   unit: molecules / UC
 
-- column: loading_65_12_no_tc
+- column: loading_error_65_12_no_tc
   type: float
   label: standard deviation of loading at 65 bar cutoff of 12 A without tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 5.0
   unit: molecules / UC
 
 - column: loading_65_20_tc
@@ -286,7 +286,7 @@
   label: standard deviation of loading at 65 bar and cutoff of 20 A with tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 5.0
   unit: molecules / UC
 
 - column: loading_65_20_no_tc
@@ -294,7 +294,7 @@
   label: standard deviation of loading at 65 bar cutoff of 20 A without tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 5.0
   unit: molecules / UC
 
 # Deliverable capacity
@@ -303,7 +303,7 @@
   label: deliverable capacity at cutoff of 12 A with tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 300.0
   unit: molecules / UC
 
 - column: dc_12_no_tc
@@ -311,7 +311,7 @@
   label: deliverable capacity at  cutoff of 12 A without tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 300.0
   unit: molecules / UC
 
 - column: dc_20_tc
@@ -319,7 +319,7 @@
   label: deliverable capacity at  cutoff of 20 A with tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 300.0
   unit: molecules / UC
 
 - column: dc_20_no_tc
@@ -327,7 +327,7 @@
   label: deliverable capacity at  of 20 A without tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 300.0
   unit: molecules / UC
 
 
@@ -336,8 +336,8 @@
   type: float
   label: density
   range:
-  - 10.0
-  - 1200.0
+  - 0.0
+  - 3.5
   unit: g/cm^3
 
 - column: accessible_surface_area
@@ -345,7 +345,7 @@
   label: accessible surface area
   range:
   - 0.0
-  - 12000.0
+  - 8565
   unit: m^2/g
 
 - column: largest_free_sphere
@@ -353,7 +353,7 @@
   label: largest free sphere diameter
   range:
   - 0.0
-  - 12000.0
+  - 45.0
   unit: A^2
 
 - column: largest_included_sphere
@@ -361,7 +361,7 @@
   label: largest included sphere diameter
   range:
   - 0.0
-  - 12000.0
+  - 45.0
   unit: A^2
 
 - column: largest_included_free_sphere
@@ -369,7 +369,7 @@
   label: largest included free sphere diameter
   range:
   - 0.0
-  - 12000.0
+  - 45.0
   unit: A^2
 
 - column: poav
@@ -377,7 +377,7 @@
   label: pore accessible volume fraction
   range:
   - 0.0
-  - 12000.0
+  - 1.0
   unit: v/v
 
 - column: pocket_surface_area
@@ -385,7 +385,7 @@
   label: pocket_surface_area
   range:
   - 0.0
-  - 12000.0
+  - 588.0
   unit: A^2
 
 
