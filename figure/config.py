@@ -11,12 +11,11 @@ quantities = collections.OrderedDict([(q['column'], q) for q in quantity_list])
 
 plot_quantities = [ q for q in quantities.keys() if quantities[q]['type'] == 'float' ]
 
-bondtype_dict = collections.OrderedDict([
-    ('amide', "#1f77b4"),
-    ('amine', "#d62728"),
-    ('imine', "#ff7f0e"),
-    ('CC', "#2ca02c"),
-    ('mixed', "#778899"),
+group_dict = collections.OrderedDict([
+    ('cof', "#1f77b4"),
+    ('mof', "#d62728"),
+    ('zeolite', "#ff7f0e"),
+    ('sampled', "#2ca02c"),
 ])
 
 with open(join(static_dir, "filters.yml"), 'r') as f:

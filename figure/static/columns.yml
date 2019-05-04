@@ -27,3 +27,46 @@
   - 0.0
   - 12000.0
   unit: m^2/g
+
+- column: largest_free_sphere
+  type: float
+  label: largest free sphere diameter
+  range:
+  - 0.0
+  - 12000.0
+  unit: A^2
+
+- column: largest_included_sphere
+  type: float
+  label: largest included sphere diameter
+  range:
+  - 0.0
+  - 12000.0
+  unit: A^2
+
+- column: largest_included_free_sphere
+  type: float
+  label: largest included free sphere diameter
+  range:
+  - 0.0
+  - 12000.0
+  unit: A^2
+
+- column: poav
+  type: float
+  label: pore accessible volume fraction
+  range:
+  - 0.0
+  - 12000.0
+  unit: v/v
+
+- column: pocket_surface_area
+  type: float
+  label: pocket_surface_area
+  range:
+  - 0.0
+  - 12000.0
+  unit: v/v
+
+
+

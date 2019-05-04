@@ -85,8 +85,8 @@ def load_preset(attr, old, new):  # pylint: disable=unused-argument,redefined-bu
 
 # quantities
 nq = len(quantities)
-bondtypes = list(config.bondtype_dict.keys())
-bondtype_colors = list(config.bondtype_dict.values())
+groups = list(config.group_dict.keys())
+group_colors = list(config.group_dict.values())
 
 # quantity selectors
 plot_options = [(q, quantities[q]['label']) for q in config.plot_quantities]
@@ -94,7 +94,7 @@ inp_x = Select(title='X', options=plot_options)
 inp_y = Select(title='Y', options=plot_options)
 #inp_clr = Select(title='Color', options=plot_options)
 inp_clr = Select(
-    title='Color', options=plot_options + [('bond_type', 'Bond type')])
+    title='Color', options=plot_options + [('group', 'group')])
 
 
 def on_filter_change(attr, old, new):  # pylint: disable=unused-argument
@@ -192,11 +192,11 @@ def create_plot():
     p_new.title.text_font_size = '10pt'
     p_new.title.text_font_style = 'italic'
 
-    if inp_clr.value == 'bond_type':
+    if inp_clr.value == 'group':
         from bokeh.transform import factor_cmap
-        paper_palette = list(config.bondtype_dict.values())
+        paper_palette = list(config.group_dict.values())
         fill_color = factor_cmap(
-            'color', palette=paper_palette, factors=bondtypes)
+            'color', palette=paper_palette, factors=groups)
         p_new.circle(
             'x',
             'y',
@@ -251,13 +251,13 @@ def update_legends(ly):
         (q_clr["label"], clr_val),
     ]
 
-    if inp_clr.value == 'bond_type':
-        clr_label = "Bond type"
+    if inp_clr.value == 'group':
+        clr_label = "group"
         hover.tooltips = [
             ("name", "@name"),
             xhover,
             yhover,
-            ("Bond type", "@color"),
+            ("group", "@color"),
         ]
     else:
         q_clr = quantities[inp_clr.value]
@@ -329,7 +329,7 @@ def on_change_clr(attr, old, new):
     the plot needs to be redrawn.
     """
     global redraw_plot
-    if (new == 'bond_type' or old == 'bond_type') and new != old:
+    if (new == 'group' or old == 'group') and new != old:
         redraw_plot = True
 
     check_uniqueness(attr, old, new)
@@ -354,5 +354,5 @@ tab = bmd.Panel(child=l, title='Scatter plot')
 tabs = bmd.widgets.Tabs(tabs=[tab])
 
 # Put the tabs in the current document for display
-curdoc().title = "Covalent Organic Frameworks"
+curdoc().title = "Applicability of tail-corrections in the molecular simulations of porous materials"
 curdoc().add_root(layout([html, tabs]))
