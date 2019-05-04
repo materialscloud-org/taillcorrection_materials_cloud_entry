@@ -91,7 +91,103 @@
   - 12000.0
   unit: molecules / UC
 
+- column: loading_35_12_tc
+  type: float
+  label: loading at 35 bar and cutoff of 12 A with tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
 
+- column: loading_35_12_no_tc
+  type: float
+  label: loading at 35 bar cutoff of 12 A without tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
+
+- column: loading_35_20_tc
+  type: float
+  label: loading at 35 bar and cutoff of 20 A with tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
+
+- column: loading_35_20_no_tc
+  type: float
+  label: loading at 35 bar cutoff of 20 A without tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
+
+
+- column: loading_65_12_tc
+  type: float
+  label: loading at 65 bar and cutoff of 12 A with tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
+
+- column: loading_65_12_no_tc
+  type: float
+  label: loading at 65 bar cutoff of 12 A without tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
+
+- column: loading_65_20_tc
+  type: float
+  label: loading at 65 bar and cutoff of 20 A with tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
+
+- column: loading_65_20_no_tc
+  type: float
+  label: loading at 65 bar cutoff of 20 A without tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
+
+
+- column: dc_12_tc
+  type: float
+  label: deliverable capacity at cutoff of 12 A with tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
+
+- column: dc_12_no_tc
+  type: float
+  label: deliverable capacity at  cutoff of 12 A without tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
+
+- column: dc_20_tc
+  type: float
+  label: deliverable capacity at  cutoff of 20 A with tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
+
+- column: dc_20_no_tc
+  type: float
+  label: deliverable capacity at  of 20 A without tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
 
 - column: density
   type: float

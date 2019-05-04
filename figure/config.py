@@ -13,9 +13,9 @@ plot_quantities = [ q for q in quantities.keys() if quantities[q]['type'] == 'fl
 
 group_dict = collections.OrderedDict([
     ('cof', "#1f77b4"),
-    ('mof', "#d62728"),
+    ('mof', "#2ca02c"),
     ('zeolite', "#ff7f0e"),
-    ('sampled', "#2ca02c"),
+    ('sampled', "#d62728"),
 ])
 
 with open(join(static_dir, "filters.yml"), 'r') as f:

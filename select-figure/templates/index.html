@@ -21,32 +21,32 @@
       <div class="container">
         <a href="figure">
           <img class="figure-thumbnail default-figure mdl-card mdl-shadow--2dp main-card" src="select-figure/static/images/default.png">
-          <div class="hover-text">High-performing COFs</div>
+          <div class="hover-text">Sampling in pore property space</div>
         </a>
       </div>
       <figcaption>
-      Deliverable Capacity <i>vs</i> Density
+        Principal component projection
       </figcaption>
     </figure>
   </div>
 </div>
 
-<div class="three-column-grid">
-  {% for fig in figures %}
-  <div class="grid-item">
-    <figure>
-      <div class="container">
-        <a href="figure?preset={{ fig[0] }}">
-          <img class="figure-thumbnail mdl-card mdl-shadow--2dp main-card" src="select-figure/static/images/{{ fig[0] }}.png">
-          <div class="hover-text">Figure {{ fig[0] }}</div>
-        </a>
-      </div>
-      <figcaption>
-        {{ fig[1] }}
-      </figcaption>
-    </figure>
-  </div>
-  {% endfor %}
+{#<div class="three-column-grid">#}
+{#  {% for fig in figures %}#}
+{#  <div class="grid-item">#}
+{#    <figure>#}
+{#      <div class="container">#}
+{#        <a href="figure?preset={{ fig[0] }}">#}
+{#          <img class="figure-thumbnail mdl-card mdl-shadow--2dp main-card" src="select-figure/static/images/{{ fig[0] }}.png">#}
+{#          <div class="hover-text">Figure {{ fig[0] }}</div>#}
+{#        </a>#}
+{#      </div>#}
+{#      <figcaption>#}
+{#        {{ fig[1] }}#}
+{#      </figcaption>#}
+{#    </figure>#}
+{#  </div>#}
+{#  {% endfor %}#}
 
 </div>
 
