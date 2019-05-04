@@ -2,6 +2,7 @@
 # 2 types supported: float, list
 ---
 
+# Projection properties
 - column: group
   type: list
   label: group
@@ -27,9 +28,11 @@
   - 12000.0
   unit:
 
+# Henry coefficient
+# Average
 - column: kh_12_tc
   type: float
-  label: Henry coefficient at cutoff of 12 A with tail-corrections
+  label: average Henry coefficient at cutoff of 12 A with tail-corrections
   range:
   - 0.0
   - 12000.0
@@ -37,7 +40,7 @@
 
 - column: kh_12_no_tc
   type: float
-  label: Henry coefficient at cutoff of 12 A without tail-corrections
+  label: average Henry coefficient at cutoff of 12 A without tail-corrections
   range:
   - 0.0
   - 12000.0
@@ -45,7 +48,7 @@
 
 - column: kh_20_tc
   type: float
-  label: Henry coefficient at cutoff of 20 A with tail-corrections
+  label: average Henry coefficient at cutoff of 20 A with tail-corrections
   range:
   - 0.0
   - 12000.0
@@ -53,15 +56,51 @@
 
 - column: kh_20_no_tc
   type: float
-  label: Henry coefficient at cutoff of 20 A without tail-corrections
+  label: average Henry coefficient at cutoff of 20 A without tail-corrections
   range:
   - 0.0
   - 12000.0
   unit: mol Pa^(-1) kg^(-1)
 
+# Stdev
+- column: kh_error_12_tc
+  type: float
+  label: standard deviation of Henry coefficient at cutoff of 12 A with tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: mol Pa^(-1) kg^(-1)
+
+- column: kh_error_12_no_tc
+  type: float
+  label: standard deviation of Henry coefficient at cutoff of 12 A without tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: mol Pa^(-1) kg^(-1)
+
+- column: kh_error_20_tc
+  type: float
+  label: standard deviation of Henry coefficient at cutoff of 20 A with tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: mol Pa^(-1) kg^(-1)
+
+- column: kh_error_20_no_tc
+  type: float
+  label: standard deviation of Henry coefficient at cutoff of 20 A without tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: mol Pa^(-1) kg^(-1)
+
+
+# Loading low pressure
+# average
 - column: loading_5_8_12_tc
   type: float
-  label: loading at 5.8 bar and cutoff of 12 A with tail-corrections
+  label: average loading at 5.8 bar and cutoff of 12 A with tail-corrections
   range:
   - 0.0
   - 12000.0
@@ -69,7 +108,7 @@
 
 - column: loading_5_8_12_no_tc
   type: float
-  label: loading at 5.8 bar cutoff of 12 A without tail-corrections
+  label: average loading at 5.8 bar cutoff of 12 A without tail-corrections
   range:
   - 0.0
   - 12000.0
@@ -77,7 +116,7 @@
 
 - column: loading_5_8_20_tc
   type: float
-  label: loading at 5.8 bar and cutoff of 20 A with tail-corrections
+  label: average loading at 5.8 bar and cutoff of 20 A with tail-corrections
   range:
   - 0.0
   - 12000.0
@@ -85,15 +124,50 @@
 
 - column: loading_5_8_20_no_tc
   type: float
-  label: loading at 5.8 bar cutoff of 20 A without tail-corrections
+  label: average loading at 5.8 bar cutoff of 20 A without tail-corrections
   range:
   - 0.0
   - 12000.0
   unit: molecules / UC
 
+# stdev
+- column: loading_error_5_8_12_tc
+  type: float
+  label: standard deviation of loading at 5.8 bar and cutoff of 12 A with tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
+
+- column: loading_error_5_8_12_no_tc
+  type: float
+  label: standard deviation of loading at 5.8 bar cutoff of 12 A without tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
+
+- column: loading_error_5_8_20_tc
+  type: float
+  label: standard deviation of loading at 5.8 bar and cutoff of 20 A with tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
+
+- column: loading_error_5_8_20_no_tc
+  type: float
+  label: standard deviation of loading at 5.8 bar cutoff of 20 A without tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
+
+# Loading medium pressure
+# average
 - column: loading_35_12_tc
   type: float
-  label: loading at 35 bar and cutoff of 12 A with tail-corrections
+  label: average loading at 35 bar and cutoff of 12 A with tail-corrections
   range:
   - 0.0
   - 12000.0
@@ -101,7 +175,7 @@
 
 - column: loading_35_12_no_tc
   type: float
-  label: loading at 35 bar cutoff of 12 A without tail-corrections
+  label: average loading at 35 bar cutoff of 12 A without tail-corrections
   range:
   - 0.0
   - 12000.0
@@ -109,7 +183,7 @@
 
 - column: loading_35_20_tc
   type: float
-  label: loading at 35 bar and cutoff of 20 A with tail-corrections
+  label: average loading at 35 bar and cutoff of 20 A with tail-corrections
   range:
   - 0.0
   - 12000.0
@@ -117,16 +191,50 @@
 
 - column: loading_35_20_no_tc
   type: float
-  label: loading at 35 bar cutoff of 20 A without tail-corrections
+  label: average loading at 35 bar cutoff of 20 A without tail-corrections
   range:
   - 0.0
   - 12000.0
   unit: molecules / UC
 
+# standard deviation
+- column: loading_error_35_12_tc
+  type: float
+  label: standard deviation of loading at 35 bar and cutoff of 12 A with tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
 
+- column: loading_error_35_12_no_tc
+  type: float
+  label: standard deviation of loading at 35 bar cutoff of 12 A without tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
+
+- column: loading_error_35_20_tc
+  type: float
+  label: standard deviation of loading at 35 bar and cutoff of 20 A with tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
+
+- column: loading_error_35_20_no_tc
+  type: float
+  label: standard deviation of loading at 35 bar cutoff of 20 A without tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
+
+# Loading high pressure
+# average
 - column: loading_65_12_tc
   type: float
-  label: loading at 65 bar and cutoff of 12 A with tail-corrections
+  label: average loading at 65 bar and cutoff of 12 A with tail-corrections
   range:
   - 0.0
   - 12000.0
@@ -134,7 +242,7 @@
 
 - column: loading_65_12_no_tc
   type: float
-  label: loading at 65 bar cutoff of 12 A without tail-corrections
+  label: average loading at 65 bar cutoff of 12 A without tail-corrections
   range:
   - 0.0
   - 12000.0
@@ -142,7 +250,7 @@
 
 - column: loading_65_20_tc
   type: float
-  label: loading at 65 bar and cutoff of 20 A with tail-corrections
+  label: average loading at 65 bar and cutoff of 20 A with tail-corrections
   range:
   - 0.0
   - 12000.0
@@ -150,13 +258,46 @@
 
 - column: loading_65_20_no_tc
   type: float
-  label: loading at 65 bar cutoff of 20 A without tail-corrections
+  label: average loading at 65 bar cutoff of 20 A without tail-corrections
   range:
   - 0.0
   - 12000.0
   unit: molecules / UC
 
+# standard deviation
+- column: loading_65_12_tc
+  type: float
+  label: standard deviation of loading at 65 bar and cutoff of 12 A with tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
 
+- column: loading_65_12_no_tc
+  type: float
+  label: standard deviation of loading at 65 bar cutoff of 12 A without tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
+
+- column: loading_65_20_tc
+  type: float
+  label: standard deviation of loading at 65 bar and cutoff of 20 A with tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
+
+- column: loading_65_20_no_tc
+  type: float
+  label: standard deviation of loading at 65 bar cutoff of 20 A without tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
+
+# Deliverable capacity
 - column: dc_12_tc
   type: float
   label: deliverable capacity at cutoff of 12 A with tail-corrections
@@ -189,6 +330,8 @@
   - 12000.0
   unit: molecules / UC
 
+
+# Zeo++ properties
 - column: density
   type: float
   label: density
