@@ -8,8 +8,8 @@
   label: group
   values:
   - zeolites
-  - mofs
-  - cofs
+  - MOFs
+  - COFs
   - sampled
 
 - column: pca_1
@@ -338,7 +338,7 @@
   range:
   - 10.0
   - 1200.0
-  unit: kg/m^3
+  unit: g/cm^3
 
 - column: accessible_surface_area
   type: float
@@ -386,7 +386,7 @@
   range:
   - 0.0
   - 12000.0
-  unit: v/v
+  unit: A^2
 
 
 

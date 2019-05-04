@@ -12,6 +12,7 @@ from bokeh.models.widgets import PreText, Button
 from bokeh.io import curdoc
 from jsmol_bokeh_extension import JSMol
 from import_db import get_cif_content_from_disk as get_cif_str
+from import_db import get_rdf_dataframe_from_disk as get_rdf_df
 #from import_db import get_cif_content_from_os as get_cif_str
 from detail.query import get_sqlite_data as get_data
 
@@ -93,7 +94,11 @@ entry = get_data(cof_name, plot_info)
 cif_str = get_cif_str(entry.filename)
 
 def rdf_plot(cof_name):
-    ...
+    from bokeh.charts import Scatter
+    df = get_rdf_df(cof_name)
+    p = Scatter(df, x='r', y='rdf', title="methane - framework radial distribution function",
+                xlabel="r / A", ylabel="g(r)")
+    return p
 
 
 
@@ -139,6 +144,7 @@ l = layout(
             [[applet], [btn_download_cif]],
             [[table_widget(entry)], [btn_download_table]],
         ],
+        [rdf_plot(cof_name)],
         [plot_info],
     ],
     sizing_mode=sizing_mode)
