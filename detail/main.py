@@ -40,6 +40,7 @@ def get_name_from_url():
     return name
 
 
+
 def table_widget(entry):
     from bokeh.models import ColumnDataSource
     from bokeh.models.widgets import DataTable, TableColumn
@@ -91,6 +92,11 @@ cof_name = get_name_from_url()
 entry = get_data(cof_name, plot_info)
 cif_str = get_cif_str(entry.filename)
 
+def rdf_plot(cof_name):
+    ...
+
+
+
 info = dict(
     height="100%",
     width="100%",
@@ -122,6 +128,9 @@ applet = JSMol(
     info=info,
     js_url="detail/static/jsmol/JSmol.min.js",
 )
+
+
+# Maybe add here a plot with the CH4-Framework RDF
 
 sizing_mode = 'fixed'
 l = layout(

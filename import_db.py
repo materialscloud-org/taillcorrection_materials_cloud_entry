@@ -8,11 +8,13 @@ from __future__ import print_function
 import pandas as pd
 import sqlalchemy
 import re
+import os
 
 folder_db = 'data/'
-structure_folder = folder_db + '/cifs/'
+structure_folder = os.path.join(folder_db, 'cifs')
+rdf_folder = os.path.join(folder_db, 'rdfs')
 structure_extension = 'cif'
-properties_csv = folder_db + '/properties.csv'
+properties_csv = os.path.join(folder_db, 'properties.csv')
 table_name = 'cifs'  # parameters will be put in this database
 db_params = 'sqlite:///{}database.db'.format(folder_db)
 
@@ -160,6 +162,9 @@ def get_cif_content_from_os(filename):
     data = requests.get(url)
     return data.content
 
+def get_rdf_dataframe_from_disk(name):
+    df = pd.read_csv(os.path.join(rdf_folder, name + 'csv'), sep='\s+')
+    return df
 
 if __name__ == "__main__":
     data = parse_csv(properties_csv)
