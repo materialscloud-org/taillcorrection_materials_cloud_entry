@@ -43,7 +43,7 @@
   label: average Henry coefficient at cutoff of 12 A without tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 0.003247
   unit: mol Pa^(-1) kg^(-1)
 
 - column: kh_20_tc
@@ -76,7 +76,7 @@
   label: standard deviation of Henry coefficient at cutoff of 12 A without tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 1.395130e-04
   unit: mol Pa^(-1) kg^(-1)
 
 - column: kh_error_20_tc
@@ -103,7 +103,7 @@
   label: average loading at 5.8 bar and cutoff of 12 A with tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 300.0
   unit: molecules / UC
 
 - column: loading_5_8_12_no_tc
@@ -111,7 +111,7 @@
   label: average loading at 5.8 bar cutoff of 12 A without tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 300.0
   unit: molecules / UC
 
 - column: loading_5_8_20_tc
@@ -119,7 +119,7 @@
   label: average loading at 5.8 bar and cutoff of 20 A with tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 300.0
   unit: molecules / UC
 
 - column: loading_5_8_20_no_tc
@@ -127,7 +127,7 @@
   label: average loading at 5.8 bar cutoff of 20 A without tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 300.0
   unit: molecules / UC
 
 # stdev
@@ -170,7 +170,7 @@
   label: average loading at 35 bar and cutoff of 12 A with tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 300.0
   unit: molecules / UC
 
 - column: loading_35_12_no_tc
@@ -178,7 +178,7 @@
   label: average loading at 35 bar cutoff of 12 A without tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 300.0
   unit: molecules / UC
 
 - column: loading_35_20_tc
@@ -186,7 +186,7 @@
   label: average loading at 35 bar and cutoff of 20 A with tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 300.0
   unit: molecules / UC
 
 - column: loading_35_20_no_tc
@@ -194,7 +194,7 @@
   label: average loading at 35 bar cutoff of 20 A without tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 300.0
   unit: molecules / UC
 
 # standard deviation
@@ -237,7 +237,7 @@
   label: average loading at 65 bar and cutoff of 12 A with tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 300.0
   unit: molecules / UC
 
 - column: loading_65_12_no_tc
@@ -245,7 +245,7 @@
   label: average loading at 65 bar cutoff of 12 A without tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 300.0
   unit: molecules / UC
 
 - column: loading_65_20_tc
@@ -253,7 +253,7 @@
   label: average loading at 65 bar and cutoff of 20 A with tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 300.0
   unit: molecules / UC
 
 - column: loading_65_20_no_tc
@@ -261,7 +261,7 @@
   label: average loading at 65 bar cutoff of 20 A without tail-corrections
   range:
   - 0.0
-  - 12000.0
+  - 300.0
   unit: molecules / UC
 
 # standard deviation
