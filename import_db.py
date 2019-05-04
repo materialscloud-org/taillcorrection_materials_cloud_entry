@@ -17,7 +17,7 @@ table_name = 'cifs'  # parameters will be put in this database
 db_params = 'sqlite:///{}database.db'.format(folder_db)
 
 # when storing structures on an object store
-os_url = "https://object.cscs.ch/v1/AUTH_b1d80408b3d340db9f03d373bbde5c1e/discover-cofs/test_data/structures"
+#os_url = "https://object.cscs.ch/v1/AUTH_b1d80408b3d340db9f03d373bbde5c1e/discover-cofs/test_data/structures"
 
 
 data = None

@@ -2,7 +2,6 @@
 # 2 types supported: float, list
 ---
 
-
 - column: group
   type: list
   label: group
@@ -11,6 +10,88 @@
   - mofs
   - cofs
   - sampled
+
+- column: pca_1
+  type: float
+  label: first principal component
+  range:
+  - 0.0
+  - 12000.0
+  unit:
+
+- column: pca_2
+  type: float
+  label: second principal component
+  range:
+  - 0.0
+  - 12000.0
+  unit:
+
+- column: kh_12_tc
+  type: float
+  label: Henry coefficient at cutoff of 12 A with tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: mol Pa^(-1) kg^(-1)
+
+- column: kh_12_no_tc
+  type: float
+  label: Henry coefficient at cutoff of 12 A without tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: mol Pa^(-1) kg^(-1)
+
+- column: kh_20_tc
+  type: float
+  label: Henry coefficient at cutoff of 20 A with tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: mol Pa^(-1) kg^(-1)
+
+- column: kh_20_no_tc
+  type: float
+  label: Henry coefficient at cutoff of 20 A without tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: mol Pa^(-1) kg^(-1)
+
+- column: loading_5_8_12_tc
+  type: float
+  label: loading at 5.8 bar and cutoff of 12 A with tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
+
+- column: loading_5_8_12_no_tc
+  type: float
+  label: loading at 5.8 bar cutoff of 12 A without tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
+
+- column: loading_5_8_20_tc
+  type: float
+  label: loading at 5.8 bar and cutoff of 20 A with tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
+
+- column: loading_5_8_20_no_tc
+  type: float
+  label: loading at 5.8 bar cutoff of 20 A without tail-corrections
+  range:
+  - 0.0
+  - 12000.0
+  unit: molecules / UC
+
+
 
 - column: density
   type: float
