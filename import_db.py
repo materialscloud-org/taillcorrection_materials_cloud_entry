@@ -163,8 +163,15 @@ def get_cif_content_from_os(filename):
     return data.content
 
 def get_rdf_dataframe_from_disk(name):
-    df = pd.read_csv(os.path.join(rdf_folder, name + 'csv'), sep='\s+')
+    df = pd.read_csv(os.path.join(rdf_folder, name + 'csv'),
+                     names=['index', 'distance', 'histogram', 'unnormalized'], comment='#', sep='\s+')
     return df
+
+def get_results_dataframes_from_disk():
+    df_tailcorrection = pd.read_csv(os.path.join(folder_db), 'tailcorrection_data.csv')
+    df_no_tailcorrection = pd.read_csv(os.path.join(folder_db), 'no_tailcorrection_data.csv')
+
+    return df_tailcorrection, df_no_tailcorrection
 
 if __name__ == "__main__":
     data = parse_csv(properties_csv)

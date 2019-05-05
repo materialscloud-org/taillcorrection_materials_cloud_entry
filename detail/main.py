@@ -13,6 +13,7 @@ from bokeh.io import curdoc
 from jsmol_bokeh_extension import JSMol
 from import_db import get_cif_content_from_disk as get_cif_str
 from import_db import get_rdf_dataframe_from_disk as get_rdf_df
+from import_db import get_results_dataframes_from_disk as get_results_df
 #from import_db import get_cif_content_from_os as get_cif_str
 from detail.query import get_sqlite_data as get_data
 
@@ -40,6 +41,26 @@ def get_name_from_url():
 
     return name
 
+def errorbar(fig, x, y, xerr=None, yerr=None, color='#d62728',
+             point_kwargs={}, error_kwargs={}):
+    """https://stackoverflow.com/a/30538908"""
+    fig.circle(x, y, color=color, **point_kwargs)
+
+    if xerr is not None:
+        x_err_x = []
+        x_err_y = []
+        for px, py, err in zip(x, y, xerr):
+            x_err_x.append((px - err, px + err))
+            x_err_y.append((py, py))
+        fig.multi_line(x_err_x, x_err_y, color=color, **error_kwargs)
+
+    if yerr is not None:
+        y_err_x = []
+        y_err_y = []
+        for px, py, err in zip(x, y, yerr):
+            y_err_x.append((px, px))
+            y_err_y.append((py - err, py + err))
+    fig.multi_line(y_err_x, y_err_y, color=color, **error_kwargs)
 
 
 def table_widget(entry):
@@ -93,14 +114,101 @@ cof_name = get_name_from_url()
 entry = get_data(cof_name, plot_info)
 cif_str = get_cif_str(entry.filename)
 
-def rdf_plot(cof_name):
-    from bokeh.charts import Scatter
-    df = get_rdf_df(cof_name)
-    p = Scatter(df, x='r', y='rdf', title="methane - framework radial distribution function",
-                xlabel="r / A", ylabel="g(r)")
+
+df_tailcorrection, df_no_tailcorrection = get_results_df()
+
+def rdf_plot(name):
+    from bokeh.plotting import figure
+    df_rdf = get_rdf_df(name)
+    p = figure(width=800, height=int(800 / 1.61803), x_axis_label='r / A',
+               y_axis_label='g(r)', title='methane-framework radial distribution function')
+    p.line(df_rdf.distance, df_rdf.histogram)
+
     return p
 
 
+def get_grids(name, df_tailcorrection=df_tailcorrection, df_no_tailcorrection=df_no_tailcorrection):
+    from bokeh.plotting import figure
+    from bokeh.layouts import gridplot
+    golden_ratio = 1.61803
+    golden_ratio_reci = 1 / golden_ratio
+
+    data_no_tail_correction = df_no_tailcorrection[df_no_tailcorrection['name'] == name]
+    data_tail_correction = df_tailcorrection[df_tailcorrection['name'] == name]
+
+    plot_width = 400
+    plot_height = int(plot_width * golden_ratio_reci)
+
+    # Henry coefficient
+    p0 = figure(plot_width=plot_width, plot_height=plot_height,
+                x_axis_label='cutoff / A', y_axis_label='Henry coefficient / (mol / kg / Pa)',
+                title='without tail-corrections')
+    y0 = errorbar(p0, data_no_tail_correction['cutoff'], data_no_tail_correction['henry_coefficient_widom_average'],
+                  yerr=data_no_tail_correction['henry_coefficient_widom_dev'].values)
+
+    p1 = figure(plot_width=plot_width, plot_height=plot_height,
+                x_range=p0.x_range, y_range=p0.y_range, x_axis_label='cutoff / A',
+                y_axis_label='Henry coefficient / (mol / kg / Pa)', title='with tail-corrections')
+    y1 = errorbar(p1, data_tail_correction['cutoff'], data_tail_correction['henry_coefficient_widom_average'],
+                  yerr=data_tail_correction['henry_coefficient_widom_dev'].values)
+
+    # Loading 5.8 bar
+    p2 = figure(plot_width=plot_width, plot_height=plot_height, x_axis_label='cutoff / A',
+                y_axis_label='loading at 5.8 bar / (molecules / UC)', x_range=p0.x_range)
+    y2 = errorbar(p2, data_no_tail_correction['cutoff'], data_no_tail_correction['loading_absolute_average_low_p'],
+                  yerr=data_no_tail_correction['loading_absolute_dev_low_p'])
+
+    p3 = figure(plot_width=plot_width, plot_height=plot_height, x_range=p2.x_range, y_range=p2.y_range,
+                x_axis_label='cutoff / A', y_axis_label='loading at 5.8 bar / (molecules / UC)')
+    y3 = errorbar(p3, data_tail_correction['cutoff'], data_tail_correction['loading_absolute_average_low_p'],
+                  yerr=data_tail_correction['loading_absolute_dev_low_p'])
+
+    # Loading 35 bar
+    p4 = figure(plot_width=plot_width, plot_height=plot_height, x_axis_label='cutoff / A',
+                y_axis_label='loading at 35 bar / (molecules / UC)', x_range=p0.x_range)
+    y4 = errorbar(p4, data_no_tail_correction['cutoff'], data_no_tail_correction['loading_absolute_average_medium_p'],
+                  yerr=data_no_tail_correction['loading_absolute_dev_medium_p'])
+
+    p5 = figure(plot_width=plot_width, plot_height=plot_height, x_range=p4.x_range, y_range=p4.y_range,
+                x_axis_label='cutoff / A', y_axis_label='loading at 35 bar / (molecules / UC)')
+    y5 = errorbar(p5, data_tail_correction['cutoff'], data_tail_correction['loading_absolute_average_medium_p'],
+                  yerr=data_tail_correction['loading_absolute_dev_medium_p'])
+
+    # Loading 65 bar
+    p6 = figure(plot_width=plot_width, plot_height=plot_height, x_axis_label='cutoff / A',
+                y_axis_label='loading at 35 bar / (molecules / UC)', x_range=p0.x_range)
+    y6 = errorbar(p6, data_no_tail_correction['cutoff'], data_no_tail_correction['loading_absolute_average_high_p'],
+                  yerr=data_no_tail_correction['loading_absolute_dev_high_p'])
+
+    p7 = figure(plot_width=plot_width, plot_height=plot_height, x_range=p6.x_range, y_range=p6.y_range,
+                x_axis_label='cutoff / A', y_axis_label='loading at 35 bar / (molecules / UC)')
+    y7 = errorbar(p7, data_tail_correction['cutoff'], data_tail_correction['loading_absolute_average_high_p'],
+                  yerr=data_tail_correction['loading_absolute_dev_high_p'])
+
+    # Deliverable capacity
+    p8 = figure(plot_width=plot_width, plot_height=plot_height, x_range=p0.x_range,
+                x_axis_label='cutoff / A', y_axis_label='deliverable capacity / (molec. / UC)')
+    y8 = errorbar(p8, data_no_tail_correction['cutoff'],
+                  data_no_tail_correction['loading_absolute_average_high_p'] - data_no_tail_correction[
+                      'loading_absolute_average_low_p'],
+                  yerr=data_no_tail_correction['loading_absolute_dev_high_p'] + data_no_tail_correction[
+                      'loading_absolute_dev_low_p'])
+
+    p9 = figure(plot_width=plot_width, plot_height=plot_height, x_range=p8.x_range, y_range=p8.y_range,
+                x_axis_label='cutoff / A', y_axis_label='deliverable capacity  / (molec. / UC)')
+    y9 = errorbar(p9, data_tail_correction['cutoff'],
+                  data_tail_correction['loading_absolute_average_high_p'] - data_tail_correction[
+                      'loading_absolute_average_low_p'],
+                  yerr=data_tail_correction['loading_absolute_dev_high_p'] + data_tail_correction[
+                      'loading_absolute_dev_low_p'])
+
+    grid = gridplot([[p0, p1],
+                     [p2, p3],
+                     [p4, p5],
+                     [p6, p7],
+                     [p8, p9]])
+
+    return grid
 
 info = dict(
     height="100%",
@@ -144,6 +252,7 @@ l = layout(
             [[applet], [btn_download_cif]],
             [[table_widget(entry)], [btn_download_table]],
         ],
+        [get_grids(cof_name, df_tailcorrection=df_tailcorrection, df_no_tailcorrection=df_no_tailcorrection)]
         [rdf_plot(cof_name)],
         [plot_info],
     ],
