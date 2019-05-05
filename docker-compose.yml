@@ -11,6 +11,6 @@ services:
       SHELL: '/bin/bash'
 
     volumes:
-     - './data:/project/discover-tailcorrection/data'
+     - './data:/project/discover-cofs/data'
     ports:
       - '3245:5006'

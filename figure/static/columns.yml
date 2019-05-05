@@ -16,17 +16,34 @@
   type: float
   label: first principal component
   range:
-  - 0.0
-  - 12000.0
+  - -5.0
+  - 8.0
   unit:
 
 - column: pca_2
   type: float
   label: second principal component
   range:
-  - 0.0
-  - 12000.0
+  - -5.0
+  - 2.0
   unit:
+
+- column: mds_1
+  type: float
+  label: first MDS component
+  range:
+  - -7.0
+  - 8.0
+  unit:
+
+- column: mds_2
+  type: float
+  label: second MDS component
+  range:
+  - -6.0
+  - 15.0
+  unit:
+
 
 # Henry coefficient
 # Average

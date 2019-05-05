@@ -33,13 +33,15 @@ def get_data_aiida(cif_uuid, plot_info):
     from aiida.orm.data.cif import CifData
 
     qb = QueryBuilder()
-    qb.append(
-        CifData, filters={'uuid': {
-            '==': cif_uuid
-        }}, tag='cifs', project='*')
+    qb.append(CifData,
+              filters={'uuid': {
+                  '==': cif_uuid
+              }},
+              tag='structures',
+              project='*')
     qb.append(
         ParameterData,
-        descendant_of='cifs',
+        descendant_of='structures',
         project='*',
     )
 

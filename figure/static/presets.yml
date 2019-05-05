@@ -3,8 +3,8 @@
 ---
 default:
   clr: group
-  x: pca_1
-  y: pca_2
+  x: mds_1
+  y: mds_2
   largest_included_sphere:
   - 4
   - 10

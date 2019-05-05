@@ -17,10 +17,16 @@ from config import quantities, presets
 from figure.query import get_data_sqla as get_data
 from figure.query import data_empty
 
-html = bmd.Div(
-    text=open(join(config.static_dir, "description.html")).read(), width=800)
+html = bmd.Div(text=open(join(config.static_dir, "description.html")).read(),
+               width=800)
 
 redraw_plot = False
+
+colors = [
+    "#64baaa", "#9c4050", "#1be19f", "#42455e", "#9fd841", "#422fae",
+    "#d78b69", "#115e41", "#beb1e7", "#d20e4d"
+]
+markers = [".", "v", "s", "p"]
 
 
 def get_preset_label_from_url():
@@ -93,8 +99,7 @@ plot_options = [(q, quantities[q]['label']) for q in config.plot_quantities]
 inp_x = Select(title='X', options=plot_options)
 inp_y = Select(title='Y', options=plot_options)
 #inp_clr = Select(title='Color', options=plot_options)
-inp_clr = Select(
-    title='Color', options=plot_options + [('group', 'group')])
+inp_clr = Select(title='Color', options=plot_options + [('group', 'group')])
 
 
 def on_filter_change(attr, old, new):  # pylint: disable=unused-argument
@@ -107,8 +112,11 @@ def on_filter_change(attr, old, new):  # pylint: disable=unused-argument
 def get_slider(desc, range, default=None):
     if default is None:
         default = range
-    slider = RangeSlider(
-        title=desc, start=range[0], end=range[1], value=default, step=0.1)
+    slider = RangeSlider(title=desc,
+                         start=range[0],
+                         end=range[1],
+                         value=default,
+                         step=0.1)
 
     slider.on_change('value', on_filter_change)
     return slider
@@ -195,17 +203,17 @@ def create_plot():
     if inp_clr.value == 'group':
         from bokeh.transform import factor_cmap
         paper_palette = list(config.group_dict.values())
-        fill_color = factor_cmap(
-            'color', palette=paper_palette, factors=groups)
-        p_new.circle(
-            'x',
-            'y',
-            size=10,
-            source=source,
-            fill_color=fill_color,
-            fill_alpha=0.6,
-            line_alpha=0.4,
-            legend='color')
+        fill_color = factor_cmap('color',
+                                 palette=paper_palette,
+                                 factors=groups)
+        p_new.circle('x',
+                     'y',
+                     size=10,
+                     source=source,
+                     fill_color=fill_color,
+                     fill_alpha=0.6,
+                     line_alpha=0.4,
+                     legend='color')
 
     else:
         cmap = bmd.LinearColorMapper(palette=Viridis256)
@@ -342,11 +350,10 @@ inp_clr.on_change('value', on_change_clr)
 # Create a panel with a new layout
 sizing_mode = 'fixed'
 inputs = widgetbox(*controls, sizing_mode=sizing_mode)
-l = layout(
-    [
-        [inputs, p],
-        [info_block],
-    ], sizing_mode=sizing_mode)
+l = layout([
+    [inputs, p],
+    [info_block],
+], sizing_mode=sizing_mode)
 update()
 
 # Create each of the tabs
@@ -354,5 +361,6 @@ tab = bmd.Panel(child=l, title='Scatter plot')
 tabs = bmd.widgets.Tabs(tabs=[tab])
 
 # Put the tabs in the current document for display
-curdoc().title = "Applicability of tail-corrections in the molecular simulations of porous materials"
+curdoc(
+).title = "Applicability of tail-corrections in the molecular simulations of porous materials"
 curdoc().add_root(layout([html, tabs]))

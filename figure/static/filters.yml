@@ -1,7 +1,7 @@
 # Specify filters
 ---
 
-- deliverable_capacity
+- dc_20_tc
 - accessible_surface_area
 - largest_free_sphere
 - poav

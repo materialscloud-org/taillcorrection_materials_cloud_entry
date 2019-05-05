@@ -9,12 +9,14 @@ with open(join(static_dir, "columns.yml"), 'r') as f:
 
 quantities = collections.OrderedDict([(q['column'], q) for q in quantity_list])
 
-plot_quantities = [ q for q in quantities.keys() if quantities[q]['type'] == 'float' ]
+plot_quantities = [
+    q for q in quantities.keys() if quantities[q]['type'] == 'float'
+]
 
 group_dict = collections.OrderedDict([
-    ('cof', "#1f77b4"),
-    ('mof', "#2ca02c"),
-    ('zeolite', "#ff7f0e"),
+    ('COFs', "#1f77b4"),
+    ('MOFs', "#2ca02c"),
+    ('zeolites', "#ff7f0e"),
     ('sampled', "#d62728"),
 ])
 
