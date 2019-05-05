@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="415236d6-5be2-483f-aab2-0d80f826ac5e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/structure-property-visualizer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/structure-property-visualizer.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figure/static/columns.yml" beforeDir="false" afterPath="$PROJECT_DIR$/figure/static/columns.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prepare.sh" beforeDir="false" afterPath="$PROJECT_DIR$/prepare.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,17 +18,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/figure/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1444">
-              <caret line="91" column="17" selection-start-line="91" selection-start-column="17" selection-end-line="91" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/detail/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
-              <caret line="88" column="20" selection-start-line="88" selection-start-column="11" selection-end-line="88" selection-end-column="20" />
+            <state relative-caret-position="342">
+              <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
               <folding>
                 <element signature="e#82#119#0" expanded="true" />
               </folding>
@@ -35,10 +28,43 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/detail/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3686">
+              <caret line="209" selection-start-line="209" selection-end-line="209" />
+              <folding>
+                <element signature="e#82#119#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/prepare.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="418">
+              <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/figure/config.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="24" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/import_db.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3078">
-              <caret line="167" selection-start-line="167" selection-end-line="167" />
+            <state relative-caret-position="703">
+              <caret line="129" column="58" lean-forward="true" selection-start-line="129" selection-start-column="58" selection-end-line="129" selection-end-column="58" />
               <folding>
                 <element signature="e#81#118#0" expanded="true" />
               </folding>
@@ -46,11 +72,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/figure/static/columns.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="741">
-              <caret line="387" column="9" selection-start-line="387" selection-start-column="9" selection-end-line="387" selection-end-column="9" />
+            <state relative-caret-position="7448">
+              <caret line="392" selection-start-line="392" selection-end-line="392" />
             </state>
           </provider>
         </entry>
@@ -124,9 +150,10 @@
         <option value="$PROJECT_DIR$/figure/config.py" />
         <option value="$PROJECT_DIR$/select-figure/templates/index.html" />
         <option value="$PROJECT_DIR$/select-figure/main.py" />
+        <option value="$PROJECT_DIR$/figure/static/columns.yml" />
         <option value="$PROJECT_DIR$/import_db.py" />
         <option value="$PROJECT_DIR$/detail/main.py" />
-        <option value="$PROJECT_DIR$/figure/static/columns.yml" />
+        <option value="$PROJECT_DIR$/prepare.sh" />
       </list>
     </option>
   </component>
@@ -141,7 +168,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="27" />
+    <option name="x" value="2528" />
     <option name="width" value="1789" />
     <option name="height" value="1069" />
   </component>
@@ -150,7 +177,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -212,6 +238,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -245,7 +272,8 @@
       <option name="presentableId" value="Default" />
       <updated>1556980011182</updated>
       <workItem from="1556980014692" duration="10253000" />
-      <workItem from="1556992668652" duration="5034000" />
+      <workItem from="1556992668652" duration="12687000" />
+      <workItem from="1557058191015" duration="886000" />
     </task>
     <task id="LOCAL-00001" summary="Starting to adjust to our needs. Will probably make two docker images. The first one, which is more important for Berend, is based on the PCA image. This will be this one. Then I will try to make plots based on data files for only the structures we sampled that show plots of the properties as a function of r_c. I think splitting it in two is the easiest way as the two plots require quite different data organizations.">
       <created>1556983250585</created>
@@ -303,17 +331,31 @@
       <option name="project" value="LOCAL" />
       <updated>1557005949798</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="fixed ranges. &#10;&#10;Probably will add the convergence plots on each detail page.">
+      <created>1557006282431</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1557006282431</updated>
+    </task>
+    <task id="LOCAL-00010" summary="adding details plots. Maybe it is probably more efficient to load the dfs&#10;for the details sections only once or even put them into a db.">
+      <created>1557057323707</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1557057323707</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15287000" />
+    <option name="totallyTimeSpent" value="23826000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1920" height="1055" extended-state="6" />
+    <frame x="2560" y="-2" width="1920" height="1202" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17395945" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17609392" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -348,10 +390,13 @@
     <MESSAGE value="adding error columns" />
     <MESSAGE value="adding dataframes" />
     <MESSAGE value="working on ranges." />
-    <option name="LAST_COMMIT_MESSAGE" value="working on ranges." />
+    <MESSAGE value="fixed ranges. &#10;&#10;Probably will add the convergence plots on each detail page." />
+    <MESSAGE value="adding details plots. Maybe it is probably more efficient to load the dfs&#10;for the details sections only once or even put them into a db." />
+    <option name="LAST_COMMIT_MESSAGE" value="adding details plots. Maybe it is probably more efficient to load the dfs&#10;for the details sections only once or even put them into a db." />
   </component>
   <component name="YapfSettings">
-    <option name="executablePath" value="$USER_HOME$/anaconda3/bin/yapf" />
+    <option name="executablePath" value="$USER_HOME$/anaconda3/envs/structure-property-visualizer/bin/yapf" />
+    <option name="formatOnSave" value="true" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Dockerfile">
@@ -383,16 +428,6 @@
           <caret line="115" column="31" selection-start-line="115" selection-start-column="31" selection-end-line="115" selection-end-column="31" />
           <folding>
             <element signature="e#23#88#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/figure/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -445,37 +480,60 @@
     <entry file="file://$PROJECT_DIR$/detail/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/import_db.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3078">
-          <caret line="167" selection-start-line="167" selection-end-line="167" />
-          <folding>
-            <element signature="e#81#118#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/data/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/detail/query.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="47" selection-start-line="19" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/data/create_data_for_materials_cloud.ipynb">
+      <provider selected="true" editor-type-id="jupyter-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/figure/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1444">
-          <caret line="91" column="17" selection-start-line="91" selection-start-column="17" selection-end-line="91" selection-end-column="17" />
+        <state relative-caret-position="342">
+          <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
+          <folding>
+            <element signature="e#82#119#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/detail/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="88" column="20" selection-start-line="88" selection-start-column="11" selection-end-line="88" selection-end-column="20" />
+        <state relative-caret-position="3686">
+          <caret line="209" selection-start-line="209" selection-end-line="209" />
           <folding>
             <element signature="e#82#119#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prepare.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/figure/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/figure/static/columns.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7448">
+          <caret line="392" selection-start-line="392" selection-end-line="392" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/figure/static/filters.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
@@ -493,23 +551,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/figure/static/filters.yml">
+    <entry file="file://$PROJECT_DIR$/detail/query.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="361">
+          <caret line="19" column="47" selection-start-line="19" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/create_data_for_materials_cloud.ipynb">
-      <provider selected="true" editor-type-id="jupyter-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/figure/static/columns.yml">
+    <entry file="file://$PROJECT_DIR$/import_db.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="741">
-          <caret line="387" column="9" selection-start-line="387" selection-start-column="9" selection-end-line="387" selection-end-column="9" />
+        <state relative-caret-position="703">
+          <caret line="129" column="58" lean-forward="true" selection-start-line="129" selection-start-column="58" selection-end-line="129" selection-end-column="58" />
+          <folding>
+            <element signature="e#81#118#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
