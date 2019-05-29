@@ -1,8 +1,9 @@
 # Specify filters
 ---
 
-- dc_20_tc
+#- dc_20_tc
 - accessible_surface_area
 - largest_free_sphere
 - poav
+- density
 - group

@@ -100,6 +100,7 @@ def table_widget(entry):
     from bokeh.models.widgets import DataTable, TableColumn
 
     entry_dict = copy(entry.__dict__)
+    print(entry_dict.keys())
     # Note: iterate over old dict, not the copy that is changing
     for k, v in entry.__dict__.items():
         if k == 'id' or k == '_sa_instance_state':
@@ -144,12 +145,20 @@ def table_widget(entry):
 def rdf_plot(name):
     from bokeh.plotting import figure
     df_rdf = get_rdf_df(name)
-    p = figure(width=800,
-               height=int(800 / 1.61803),
-               x_axis_label='r / A',
-               y_axis_label='g(r)',
-               title='methane-framework radial distribution function')
-    p.line(df_rdf.distance, df_rdf.histogram)
+    p = figure(
+        width=800,
+        height=int(800 / 1.61803),
+        x_axis_label='r / A',
+        y_axis_label='g(r)',
+        title='methane-framework radial distribution function',
+        active_drag='box_zoom',
+        output_backend='webgl',
+    )
+    p.line(
+        df_rdf.distance,
+        df_rdf.histogram,
+        color='#d62728',
+    )
 
     return p
 
@@ -168,24 +177,40 @@ def get_grids(name, df_tailcorrection, df_no_tailcorrection):
     plot_height = int(plot_width * golden_ratio_reci)
 
     # Henry coefficient
-    p0 = figure(plot_width=plot_width,
-                plot_height=plot_height,
-                x_axis_label='cutoff / A',
-                y_axis_label='Henry coefficient / (mol / kg / Pa)',
-                title='without tail-corrections')
+    p0 = figure(
+        plot_width=plot_width,
+        plot_height=plot_height,
+        x_axis_label='cutoff / A',
+        y_axis_label='Henry coefficient / (mol / kg / Pa)',
+        y_axis_type="log",
+        title='without tail-corrections',
+        active_drag='box_zoom',
+        output_backend='webgl',
+    )
+    p0.title.align = 'center'
+    p0.title.text_font_size = '10pt'
+
     y0 = errorbar(
         p0,
         data_no_tail_correction['cutoff'],
         data_no_tail_correction['henry_coefficient_widom_average'],
         yerr=data_no_tail_correction['henry_coefficient_widom_dev'].values)
 
-    p1 = figure(plot_width=plot_width,
-                plot_height=plot_height,
-                x_range=p0.x_range,
-                y_range=p0.y_range,
-                x_axis_label='cutoff / A',
-                y_axis_label='Henry coefficient / (mol / kg / Pa)',
-                title='with tail-corrections')
+    p1 = figure(
+        plot_width=plot_width,
+        plot_height=plot_height,
+        x_range=p0.x_range,
+        y_range=p0.y_range,
+        x_axis_label='cutoff / A',
+        y_axis_label='Henry coefficient / (mol / kg / Pa)',
+        y_axis_type="log",
+        title='with tail-corrections',
+        active_drag='box_zoom',
+        output_backend='webgl',
+    )
+    p1.title.align = 'center'
+    p1.title.text_font_size = '10pt'
+
     y1 = errorbar(
         p1,
         data_tail_correction['cutoff'],
@@ -193,78 +218,106 @@ def get_grids(name, df_tailcorrection, df_no_tailcorrection):
         yerr=data_tail_correction['henry_coefficient_widom_dev'].values)
 
     # Loading 5.8 bar
-    p2 = figure(plot_width=plot_width,
-                plot_height=plot_height,
-                x_axis_label='cutoff / A',
-                y_axis_label='loading at 5.8 bar / (molecules / UC)',
-                x_range=p0.x_range)
+    p2 = figure(
+        plot_width=plot_width,
+        plot_height=plot_height,
+        x_axis_label='cutoff / A',
+        y_axis_label='loading at 5.8 bar / (molecules / UC)',
+        x_range=p0.x_range,
+        active_drag='box_zoom',
+        output_backend='webgl',
+    )
     y2 = errorbar(p2,
                   data_no_tail_correction['cutoff'],
                   data_no_tail_correction['loading_absolute_average_low_p'],
                   yerr=data_no_tail_correction['loading_absolute_dev_low_p'])
 
-    p3 = figure(plot_width=plot_width,
-                plot_height=plot_height,
-                x_range=p2.x_range,
-                y_range=p2.y_range,
-                x_axis_label='cutoff / A',
-                y_axis_label='loading at 5.8 bar / (molecules / UC)')
+    p3 = figure(
+        plot_width=plot_width,
+        plot_height=plot_height,
+        x_range=p2.x_range,
+        y_range=p2.y_range,
+        x_axis_label='cutoff / A',
+        y_axis_label='loading at 5.8 bar / (molecules / UC)',
+        active_drag='box_zoom',
+        output_backend='webgl',
+    )
     y3 = errorbar(p3,
                   data_tail_correction['cutoff'],
                   data_tail_correction['loading_absolute_average_low_p'],
                   yerr=data_tail_correction['loading_absolute_dev_low_p'])
 
     # Loading 35 bar
-    p4 = figure(plot_width=plot_width,
-                plot_height=plot_height,
-                x_axis_label='cutoff / A',
-                y_axis_label='loading at 35 bar / (molecules / UC)',
-                x_range=p0.x_range)
+    p4 = figure(
+        plot_width=plot_width,
+        plot_height=plot_height,
+        x_axis_label='cutoff / A',
+        y_axis_label='loading at 35 bar / (molecules / UC)',
+        x_range=p0.x_range,
+        active_drag='box_zoom',
+        output_backend='webgl',
+    )
     y4 = errorbar(
         p4,
         data_no_tail_correction['cutoff'],
         data_no_tail_correction['loading_absolute_average_medium_p'],
         yerr=data_no_tail_correction['loading_absolute_dev_medium_p'])
 
-    p5 = figure(plot_width=plot_width,
-                plot_height=plot_height,
-                x_range=p4.x_range,
-                y_range=p4.y_range,
-                x_axis_label='cutoff / A',
-                y_axis_label='loading at 35 bar / (molecules / UC)')
+    p5 = figure(
+        plot_width=plot_width,
+        plot_height=plot_height,
+        x_range=p4.x_range,
+        y_range=p4.y_range,
+        x_axis_label='cutoff / A',
+        y_axis_label='loading at 35 bar / (molecules / UC)',
+        active_drag='box_zoom',
+        output_backend='webgl',
+    )
     y5 = errorbar(p5,
                   data_tail_correction['cutoff'],
                   data_tail_correction['loading_absolute_average_medium_p'],
                   yerr=data_tail_correction['loading_absolute_dev_medium_p'])
 
     # Loading 65 bar
-    p6 = figure(plot_width=plot_width,
-                plot_height=plot_height,
-                x_axis_label='cutoff / A',
-                y_axis_label='loading at 35 bar / (molecules / UC)',
-                x_range=p0.x_range)
+    p6 = figure(
+        plot_width=plot_width,
+        plot_height=plot_height,
+        x_axis_label='cutoff / A',
+        y_axis_label='loading at 35 bar / (molecules / UC)',
+        x_range=p0.x_range,
+        active_drag='box_zoom',
+        output_backend='webgl',
+    )
     y6 = errorbar(p6,
                   data_no_tail_correction['cutoff'],
                   data_no_tail_correction['loading_absolute_average_high_p'],
                   yerr=data_no_tail_correction['loading_absolute_dev_high_p'])
 
-    p7 = figure(plot_width=plot_width,
-                plot_height=plot_height,
-                x_range=p6.x_range,
-                y_range=p6.y_range,
-                x_axis_label='cutoff / A',
-                y_axis_label='loading at 35 bar / (molecules / UC)')
+    p7 = figure(
+        plot_width=plot_width,
+        plot_height=plot_height,
+        x_range=p6.x_range,
+        y_range=p6.y_range,
+        x_axis_label='cutoff / A',
+        y_axis_label='loading at 35 bar / (molecules / UC)',
+        active_drag='box_zoom',
+        output_backend='webgl',
+    )
     y7 = errorbar(p7,
                   data_tail_correction['cutoff'],
                   data_tail_correction['loading_absolute_average_high_p'],
                   yerr=data_tail_correction['loading_absolute_dev_high_p'])
 
     # Deliverable capacity
-    p8 = figure(plot_width=plot_width,
-                plot_height=plot_height,
-                x_range=p0.x_range,
-                x_axis_label='cutoff / A',
-                y_axis_label='deliverable capacity / (molec. / UC)')
+    p8 = figure(
+        plot_width=plot_width,
+        plot_height=plot_height,
+        x_range=p0.x_range,
+        x_axis_label='cutoff / A',
+        y_axis_label='deliverable capacity / (molec. / UC)',
+        active_drag='box_zoom',
+        output_backend='webgl',
+    )
     y8 = errorbar(p8,
                   data_no_tail_correction['cutoff'],
                   data_no_tail_correction['loading_absolute_average_high_p'] -
@@ -272,12 +325,16 @@ def get_grids(name, df_tailcorrection, df_no_tailcorrection):
                   yerr=data_no_tail_correction['loading_absolute_dev_high_p'] +
                   data_no_tail_correction['loading_absolute_dev_low_p'])
 
-    p9 = figure(plot_width=plot_width,
-                plot_height=plot_height,
-                x_range=p8.x_range,
-                y_range=p8.y_range,
-                x_axis_label='cutoff / A',
-                y_axis_label='deliverable capacity  / (molec. / UC)')
+    p9 = figure(
+        plot_width=plot_width,
+        plot_height=plot_height,
+        x_range=p8.x_range,
+        y_range=p8.y_range,
+        x_axis_label='cutoff / A',
+        y_axis_label='deliverable capacity  / (molec. / UC)',
+        active_drag='box_zoom',
+        output_backend='webgl',
+    )
     y9 = errorbar(p9,
                   data_tail_correction['cutoff'],
                   data_tail_correction['loading_absolute_average_high_p'] -
@@ -285,7 +342,9 @@ def get_grids(name, df_tailcorrection, df_no_tailcorrection):
                   yerr=data_tail_correction['loading_absolute_dev_high_p'] +
                   data_tail_correction['loading_absolute_dev_low_p'])
 
-    grid = gridplot([[p0, p1], [p2, p3], [p4, p5], [p6, p7], [p8, p9]])
+    grid = gridplot([[p0, p1], [p2, p3], [p4, p5], [p6, p7], [p8, p9]],
+                    plot_width=plot_width,
+                    plot_height=plot_height)
 
     return grid
 

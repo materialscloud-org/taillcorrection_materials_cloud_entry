@@ -20,13 +20,7 @@ from figure.query import data_empty
 html = bmd.Div(text=open(join(config.static_dir, "description.html")).read(),
                width=800)
 
-redraw_plot = False
-
-colors = [
-    "#64baaa", "#9c4050", "#1be19f", "#42455e", "#9fd841", "#422fae",
-    "#d78b69", "#115e41", "#beb1e7", "#d20e4d"
-]
-markers = [".", "v", "s", "p"]
+redraw_plot = True
 
 
 def get_preset_label_from_url():
@@ -206,14 +200,16 @@ def create_plot():
         fill_color = factor_cmap('color',
                                  palette=paper_palette,
                                  factors=groups)
-        p_new.circle('x',
-                     'y',
-                     size=10,
-                     source=source,
-                     fill_color=fill_color,
-                     fill_alpha=0.6,
-                     line_alpha=0.4,
-                     legend='color')
+
+        p_new.circle(
+            'x',
+            'y',
+            size=10,
+            source=source,
+            fill_color=fill_color,
+            #fill_alpha=0.6,
+            line_alpha=0.4,
+            legend='color')
 
     else:
         cmap = bmd.LinearColorMapper(palette=Viridis256)
@@ -318,7 +314,7 @@ def update():
         #TO DO: for some reason this destroys the coupling to source.data
         # to figure out why (and then restrict this to actual redrawing scenarios)
         l.children[0].children[1] = figure
-        redraw_plot = False
+        redraw_plot = True
 
     update_legends(l)
     plot_info.text += " done!"

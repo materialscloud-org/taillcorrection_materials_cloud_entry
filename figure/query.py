@@ -2,6 +2,7 @@
 """
 from bokeh.models.widgets import RangeSlider, CheckboxButtonGroup
 from config import max_points
+import pandas as pd
 # pylint: disable=too-many-locals
 data_empty = dict(x=[0], y=[0], uuid=['1234'], color=[0], name=['no data'])
 
@@ -53,9 +54,28 @@ def get_data_sqla(projections, sliders_dict, quantities, plot_info):
     x = list(map(float, x))
     y = list(map(float, y))
 
+    print(projections)
     if projections[2] == 'group':
         #clrs = map(lambda clr: bondtypes.index(clr), clrs)
-        clrs = list(map(str, clrs))
+        clrs = list(clrs)
+        # df = pd.DataFrame({
+        #     'x': x,
+        #     'y': y,
+        #     'filename': filenames,
+        #     'name': names,
+        #     'color': clrs
+        # })
+        #
+        # my_own_order = ['COFs', 'MOFs', 'zeolites', 'sampled']
+        # my_own_order_dict = {key: i for i, key in enumerate(my_own_order)}
+        # inv_my_own_order_dict = {v: k for k, v in my_own_order_dict.items()}
+        # df['color_mapped'] = df['color'].map(my_own_order_dict)
+        # df.sort_values(by=['color_mapped'], inplace=True)
+        # x = df['x'].astype(float).to_list()
+        # y = df['y'].astype(float).to_list()
+        # filenames = df['filename'].to_list()
+        # clrs = df['color'].to_list()
+        # names = df['name'].to_list()
     else:
         clrs = list(map(float, clrs))
 

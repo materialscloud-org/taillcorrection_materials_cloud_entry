@@ -1,6 +1,7 @@
 import collections
 import yaml
 from os.path import join, dirname
+from bokeh.colors import RGB
 
 static_dir = join(dirname(__file__), "static")
 
@@ -14,10 +15,10 @@ plot_quantities = [
 ]
 
 group_dict = collections.OrderedDict([
-    ('COFs', "#1f77b4"),
-    ('MOFs', "#2ca02c"),
-    ('zeolites', "#ff7f0e"),
-    ('sampled', "#d62728"),
+    ('COFs', RGB(31, 119, 180, 0.5)),  # #1f77b4
+    ('MOFs', RGB(44, 160, 44, 0.5)),  # #2ca02c
+    ('zeolites', RGB(255, 127, 14, 0.5)),  # #ff7f0e
+    ('sampled', RGB(214, 39, 40, 1.0)),  # #d62728
 ])
 
 with open(join(static_dir, "filters.yml"), 'r') as f:
@@ -31,3 +32,7 @@ for k in presets.keys():
         presets[k]['clr'] = presets['default']['clr']
 
 max_points = 70000
+
+unit_dict = {
+    'loading': 'molecules / UC',
+}
