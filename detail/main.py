@@ -14,7 +14,8 @@ from jsmol_bokeh_extension import JSMol
 from import_db import get_cif_content_from_disk as get_cif_str
 from import_db import get_rdf_dataframe_from_disk as get_rdf_df
 from import_db import get_results_dataframes_from_disk as get_results_df
-#from import_db import get_cif_content_from_os as get_cif_str
+
+# from import_db import get_cif_content_from_os as get_cif_str
 from detail.query import get_sqlite_data as get_data
 
 html = bmd.Div(text=open(join(dirname(__file__), "description.html")).read(),
@@ -22,35 +23,113 @@ html = bmd.Div(text=open(join(dirname(__file__), "description.html")).read(),
 
 download_js = open(join(dirname(__file__), "static", "download.js")).read()
 
-plot_info = PreText(text='', width=300, height=100)
-plot_info_not_sampled = PreText(
-    text='We did not perform molecular simulations for this structure.',
+plot_info = PreText(text="Pore blocking is not relevant for this structure.",
+                    width=300,
+                    height=100)
+
+plot_info_blocked_pockets = PreText(
+    text="Pore blocking is relevant and used for this structure.",
     width=300,
     height=100)
+
+plot_info_non_permeable = PreText(
+    text=
+    "This structure has no accessible pore volume. We show simulations without pore blocking. ",
+    width=300,
+    height=100,
+)
+
+plot_info_not_sampled = PreText(
+    text="We did not perform molecular simulations for this structure.",
+    width=300,
+    height=100,
+)
 
 btn_download_table = Button(label="Download json", button_type="primary")
 btn_download_cif = Button(label="Download cif", button_type="primary")
 
 zeolites = [
-    'MTT', 'GOO', 'AFT', 'SFN', 'TSC', 'PAU', 'UEI', 'EMT', 'SFS', 'MFI'
+    "MTT", "GOO", "AFT", "SFN", "TSC", "PAU", "UEI", "EMT", "SFS", "MFI"
 ]
 
 cofs = [
-    '16411C2', '15030N2', '16083N2', '17030N2', '17040N2', '17163N3',
-    '15072N2', '18091N2', '13030N2', '17120N2'
+    "16411C2",
+    "15030N2",
+    "16083N2",
+    "17030N2",
+    "17040N2",
+    "17163N3",
+    "15072N2",
+    "18091N2",
+    "13030N2",
+    "17120N2",
 ]
 
 mofs = [
-    'NOCKUM_clean_min', 'BENXUP_clean_min', 'PIHNUQ_clean_min',
-    'RIVDEF_clean_min', 'TUDJIM_freeONLY_min', 'NUTQEZ_clean_min',
-    'DIYTEM_freeONLY_min', 'YUJNIB_clean_min', 'IBICIH_clean_min',
-    'XOJWID_charged_min'
+    "NOCKUM_clean_min",
+    "BENXUP_clean_min",
+    "PIHNUQ_clean_min",
+    "RIVDEF_clean_min",
+    "TUDJIM_freeONLY_min",
+    "NUTQEZ_clean_min",
+    "DIYTEM_freeONLY_min",
+    "YUJNIB_clean_min",
+    "IBICIH_clean_min",
+    "XOJWID_charged_min",
 ]
 
 famous_mofs = [
-    "ZIF-8", "ZIF-4", "UMCM-1", "UIO-66", "SBMOF-1", "MIL-125", "Mg-MOF-74",
-    "IRMOF-10", "IRMOF-1", "Cu-BTC"
+    "ZIF-8",
+    "ZIF-4",
+    "UMCM-1",
+    "UIO-66",
+    "SBMOF-1",
+    "MIL-125",
+    "Mg-MOF-74",
+    "IRMOF-10",
+    "IRMOF-1",
+    "Cu-BTC",
 ]
+
+blocked_pockets = [
+    "15072N2",
+    "16083N2",
+    "17120N2",
+    "18091N2",
+    "AFT",
+    "BENXUP",
+    "EMT",
+    "GOO",
+    "PAU",
+    "PIHNUQ",
+    "SBMOF-1",
+    "TSC",
+    "TUDJIM",
+    "UEI",
+    "XOJWID",
+    "YUJNIB",
+    "ZIF-4",
+]
+
+non_permeable = [
+    "13030N2",
+    "17120N2",
+    "ZIF-4",
+    "SBMOF-1",
+    "ZIF-8",
+    "PAU",
+    "AFT",
+    "TSC",
+    "GOO",
+    "UEI",
+    "XOJWID",
+    "TUDJIM",
+    "PIHNUQ",
+    "BENXUP",
+    "YUJNIB",
+]
+
+used_block = list(set(blocked_pockets) - set(non_permeable))
 
 allowed_names = mofs + famous_mofs + cofs + zeolites
 
@@ -58,11 +137,11 @@ allowed_names = mofs + famous_mofs + cofs + zeolites
 def get_name_from_url():
     args = curdoc().session_context.request.arguments
     try:
-        name = args.get('name')[0]
+        name = args.get("name")[0]
         if isinstance(name, bytes):
             name = name.decode()
     except (TypeError, KeyError):
-        name = 'TSC'
+        name = "TSC"
 
     return name
 
@@ -72,7 +151,7 @@ def errorbar(fig,
              y,
              xerr=None,
              yerr=None,
-             color='#d62728',
+             color="#d62728",
              point_kwargs={},
              error_kwargs={}):
     """https://stackoverflow.com/a/30538908"""
@@ -103,11 +182,11 @@ def table_widget(entry):
     print(entry_dict.keys())
     # Note: iterate over old dict, not the copy that is changing
     for k, v in entry.__dict__.items():
-        if k == 'id' or k == '_sa_instance_state':
+        if k == "id" or k == "_sa_instance_state":
             del entry_dict[k]
 
         # use _units keys to rename corresponding quantity
-        if k[-6:] == '_units':
+        if k[-6:] == "_units":
             prop = k[:-6]
             new_key = "{} [{}]".format(prop, entry_dict[k])
             del entry_dict[k]
@@ -127,38 +206,38 @@ def table_widget(entry):
         TableColumn(field="labels", title="Properties"),
         TableColumn(field="values", title="Values"),
     ]
-    data_table = DataTable(source=source,
-                           columns=columns,
-                           width=500,
-                           height=570,
-                           index_position=None,
-                           fit_columns=False)
+    data_table = DataTable(
+        source=source,
+        columns=columns,
+        width=500,
+        height=570,
+        index_position=None,
+        fit_columns=False,
+    )
 
     json_str = json.dumps(entry_dict, indent=2)
-    btn_download_table.callback = bmd.CustomJS(args=dict(
-        string=json_str, filename=entry_dict['name'] + '.json'),
-                                               code=download_js)
+    btn_download_table.callback = bmd.CustomJS(
+        args=dict(string=json_str, filename=entry_dict["name"] + ".json"),
+        code=download_js,
+    )
 
     return widgetbox(data_table)
 
 
 def rdf_plot(name):
     from bokeh.plotting import figure
+
     df_rdf = get_rdf_df(name)
     p = figure(
         width=800,
         height=int(800 / 1.61803),
-        x_axis_label='r / A',
-        y_axis_label='g(r)',
-        title='methane-framework radial distribution function',
-        active_drag='box_zoom',
-        output_backend='webgl',
+        x_axis_label="r / A",
+        y_axis_label="g(r)",
+        title="methane-framework radial distribution function",
+        active_drag="box_zoom",
+        output_backend="webgl",
     )
-    p.line(
-        df_rdf.distance,
-        df_rdf.histogram,
-        color='#d62728',
-    )
+    p.line(df_rdf.distance, df_rdf.histogram, color="#d62728")
 
     return p
 
@@ -166,12 +245,13 @@ def rdf_plot(name):
 def get_grids(name, df_tailcorrection, df_no_tailcorrection):
     from bokeh.plotting import figure
     from bokeh.layouts import gridplot
+
     golden_ratio = 1.61803
     golden_ratio_reci = 1 / golden_ratio
 
-    data_no_tail_correction = df_no_tailcorrection[df_no_tailcorrection['name']
+    data_no_tail_correction = df_no_tailcorrection[df_no_tailcorrection["name"]
                                                    == name]
-    data_tail_correction = df_tailcorrection[df_tailcorrection['name'] == name]
+    data_tail_correction = df_tailcorrection[df_tailcorrection["name"] == name]
 
     plot_width = 400
     plot_height = int(plot_width * golden_ratio_reci)
@@ -180,178 +260,197 @@ def get_grids(name, df_tailcorrection, df_no_tailcorrection):
     p0 = figure(
         plot_width=plot_width,
         plot_height=plot_height,
-        x_axis_label='cutoff / A',
-        y_axis_label='Henry coefficient / (mol / kg / Pa)',
+        x_axis_label="cutoff / A",
+        y_axis_label="Henry coefficient / (mol / kg / Pa)",
         y_axis_type="log",
-        title='without tail-corrections',
-        active_drag='box_zoom',
-        output_backend='webgl',
+        title="without tail-corrections",
+        active_drag="box_zoom",
+        output_backend="webgl",
     )
-    p0.title.align = 'center'
-    p0.title.text_font_size = '10pt'
+    p0.title.align = "center"
+    p0.title.text_font_size = "10pt"
 
     y0 = errorbar(
         p0,
-        data_no_tail_correction['cutoff'],
-        data_no_tail_correction['henry_coefficient_widom_average'],
-        yerr=data_no_tail_correction['henry_coefficient_widom_dev'].values)
+        data_no_tail_correction["cutoff"],
+        data_no_tail_correction["henry_coefficient_widom_average"],
+        yerr=data_no_tail_correction["henry_coefficient_widom_dev"].values,
+    )
 
     p1 = figure(
         plot_width=plot_width,
         plot_height=plot_height,
         x_range=p0.x_range,
         y_range=p0.y_range,
-        x_axis_label='cutoff / A',
-        y_axis_label='Henry coefficient / (mol / kg / Pa)',
+        x_axis_label="cutoff / A",
+        y_axis_label="Henry coefficient / (mol / kg / Pa)",
         y_axis_type="log",
-        title='with tail-corrections',
-        active_drag='box_zoom',
-        output_backend='webgl',
+        title="with tail-corrections",
+        active_drag="box_zoom",
+        output_backend="webgl",
     )
-    p1.title.align = 'center'
-    p1.title.text_font_size = '10pt'
+    p1.title.align = "center"
+    p1.title.text_font_size = "10pt"
 
     y1 = errorbar(
         p1,
-        data_tail_correction['cutoff'],
-        data_tail_correction['henry_coefficient_widom_average'],
-        yerr=data_tail_correction['henry_coefficient_widom_dev'].values)
+        data_tail_correction["cutoff"],
+        data_tail_correction["henry_coefficient_widom_average"],
+        yerr=data_tail_correction["henry_coefficient_widom_dev"].values,
+    )
 
     # Loading 5.8 bar
     p2 = figure(
         plot_width=plot_width,
         plot_height=plot_height,
-        x_axis_label='cutoff / A',
-        y_axis_label='loading at 5.8 bar / (molecules / UC)',
+        x_axis_label="cutoff / A",
+        y_axis_label="loading at 5.8 bar / (molecules / UC)",
         x_range=p0.x_range,
-        active_drag='box_zoom',
-        output_backend='webgl',
+        active_drag="box_zoom",
+        output_backend="webgl",
     )
-    y2 = errorbar(p2,
-                  data_no_tail_correction['cutoff'],
-                  data_no_tail_correction['loading_absolute_average_low_p'],
-                  yerr=data_no_tail_correction['loading_absolute_dev_low_p'])
+    y2 = errorbar(
+        p2,
+        data_no_tail_correction["cutoff"],
+        data_no_tail_correction["loading_absolute_average_low_p"],
+        yerr=data_no_tail_correction["loading_absolute_dev_low_p"],
+    )
 
     p3 = figure(
         plot_width=plot_width,
         plot_height=plot_height,
         x_range=p2.x_range,
         y_range=p2.y_range,
-        x_axis_label='cutoff / A',
-        y_axis_label='loading at 5.8 bar / (molecules / UC)',
-        active_drag='box_zoom',
-        output_backend='webgl',
+        x_axis_label="cutoff / A",
+        y_axis_label="loading at 5.8 bar / (molecules / UC)",
+        active_drag="box_zoom",
+        output_backend="webgl",
     )
-    y3 = errorbar(p3,
-                  data_tail_correction['cutoff'],
-                  data_tail_correction['loading_absolute_average_low_p'],
-                  yerr=data_tail_correction['loading_absolute_dev_low_p'])
+    y3 = errorbar(
+        p3,
+        data_tail_correction["cutoff"],
+        data_tail_correction["loading_absolute_average_low_p"],
+        yerr=data_tail_correction["loading_absolute_dev_low_p"],
+    )
 
     # Loading 35 bar
     p4 = figure(
         plot_width=plot_width,
         plot_height=plot_height,
-        x_axis_label='cutoff / A',
-        y_axis_label='loading at 35 bar / (molecules / UC)',
+        x_axis_label="cutoff / A",
+        y_axis_label="loading at 35 bar / (molecules / UC)",
         x_range=p0.x_range,
-        active_drag='box_zoom',
-        output_backend='webgl',
+        active_drag="box_zoom",
+        output_backend="webgl",
     )
     y4 = errorbar(
         p4,
-        data_no_tail_correction['cutoff'],
-        data_no_tail_correction['loading_absolute_average_medium_p'],
-        yerr=data_no_tail_correction['loading_absolute_dev_medium_p'])
+        data_no_tail_correction["cutoff"],
+        data_no_tail_correction["loading_absolute_average_medium_p"],
+        yerr=data_no_tail_correction["loading_absolute_dev_medium_p"],
+    )
 
     p5 = figure(
         plot_width=plot_width,
         plot_height=plot_height,
         x_range=p4.x_range,
         y_range=p4.y_range,
-        x_axis_label='cutoff / A',
-        y_axis_label='loading at 35 bar / (molecules / UC)',
-        active_drag='box_zoom',
-        output_backend='webgl',
+        x_axis_label="cutoff / A",
+        y_axis_label="loading at 35 bar / (molecules / UC)",
+        active_drag="box_zoom",
+        output_backend="webgl",
     )
-    y5 = errorbar(p5,
-                  data_tail_correction['cutoff'],
-                  data_tail_correction['loading_absolute_average_medium_p'],
-                  yerr=data_tail_correction['loading_absolute_dev_medium_p'])
+    y5 = errorbar(
+        p5,
+        data_tail_correction["cutoff"],
+        data_tail_correction["loading_absolute_average_medium_p"],
+        yerr=data_tail_correction["loading_absolute_dev_medium_p"],
+    )
 
     # Loading 65 bar
     p6 = figure(
         plot_width=plot_width,
         plot_height=plot_height,
-        x_axis_label='cutoff / A',
-        y_axis_label='loading at 35 bar / (molecules / UC)',
+        x_axis_label="cutoff / A",
+        y_axis_label="loading at 35 bar / (molecules / UC)",
         x_range=p0.x_range,
-        active_drag='box_zoom',
-        output_backend='webgl',
+        active_drag="box_zoom",
+        output_backend="webgl",
     )
-    y6 = errorbar(p6,
-                  data_no_tail_correction['cutoff'],
-                  data_no_tail_correction['loading_absolute_average_high_p'],
-                  yerr=data_no_tail_correction['loading_absolute_dev_high_p'])
+    y6 = errorbar(
+        p6,
+        data_no_tail_correction["cutoff"],
+        data_no_tail_correction["loading_absolute_average_high_p"],
+        yerr=data_no_tail_correction["loading_absolute_dev_high_p"],
+    )
 
     p7 = figure(
         plot_width=plot_width,
         plot_height=plot_height,
         x_range=p6.x_range,
         y_range=p6.y_range,
-        x_axis_label='cutoff / A',
-        y_axis_label='loading at 35 bar / (molecules / UC)',
-        active_drag='box_zoom',
-        output_backend='webgl',
+        x_axis_label="cutoff / A",
+        y_axis_label="loading at 35 bar / (molecules / UC)",
+        active_drag="box_zoom",
+        output_backend="webgl",
     )
-    y7 = errorbar(p7,
-                  data_tail_correction['cutoff'],
-                  data_tail_correction['loading_absolute_average_high_p'],
-                  yerr=data_tail_correction['loading_absolute_dev_high_p'])
+    y7 = errorbar(
+        p7,
+        data_tail_correction["cutoff"],
+        data_tail_correction["loading_absolute_average_high_p"],
+        yerr=data_tail_correction["loading_absolute_dev_high_p"],
+    )
 
     # Deliverable capacity
     p8 = figure(
         plot_width=plot_width,
         plot_height=plot_height,
         x_range=p0.x_range,
-        x_axis_label='cutoff / A',
-        y_axis_label='deliverable capacity / (molec. / UC)',
-        active_drag='box_zoom',
-        output_backend='webgl',
+        x_axis_label="cutoff / A",
+        y_axis_label="deliverable capacity / (molec. / UC)",
+        active_drag="box_zoom",
+        output_backend="webgl",
     )
-    y8 = errorbar(p8,
-                  data_no_tail_correction['cutoff'],
-                  data_no_tail_correction['loading_absolute_average_high_p'] -
-                  data_no_tail_correction['loading_absolute_average_low_p'],
-                  yerr=data_no_tail_correction['loading_absolute_dev_high_p'] +
-                  data_no_tail_correction['loading_absolute_dev_low_p'])
+    y8 = errorbar(
+        p8,
+        data_no_tail_correction["cutoff"],
+        data_no_tail_correction["loading_absolute_average_high_p"] -
+        data_no_tail_correction["loading_absolute_average_low_p"],
+        yerr=data_no_tail_correction["loading_absolute_dev_high_p"] +
+        data_no_tail_correction["loading_absolute_dev_low_p"],
+    )
 
     p9 = figure(
         plot_width=plot_width,
         plot_height=plot_height,
         x_range=p8.x_range,
         y_range=p8.y_range,
-        x_axis_label='cutoff / A',
-        y_axis_label='deliverable capacity  / (molec. / UC)',
-        active_drag='box_zoom',
-        output_backend='webgl',
+        x_axis_label="cutoff / A",
+        y_axis_label="deliverable capacity  / (molec. / UC)",
+        active_drag="box_zoom",
+        output_backend="webgl",
     )
-    y9 = errorbar(p9,
-                  data_tail_correction['cutoff'],
-                  data_tail_correction['loading_absolute_average_high_p'] -
-                  data_tail_correction['loading_absolute_average_low_p'],
-                  yerr=data_tail_correction['loading_absolute_dev_high_p'] +
-                  data_tail_correction['loading_absolute_dev_low_p'])
+    y9 = errorbar(
+        p9,
+        data_tail_correction["cutoff"],
+        data_tail_correction["loading_absolute_average_high_p"] -
+        data_tail_correction["loading_absolute_average_low_p"],
+        yerr=data_tail_correction["loading_absolute_dev_high_p"] +
+        data_tail_correction["loading_absolute_dev_low_p"],
+    )
 
-    grid = gridplot([[p0, p1], [p2, p3], [p4, p5], [p6, p7], [p8, p9]],
-                    plot_width=plot_width,
-                    plot_height=plot_height)
+    grid = gridplot(
+        [[p0, p1], [p2, p3], [p4, p5], [p6, p7], [p8, p9]],
+        plot_width=plot_width,
+        plot_height=plot_height,
+    )
 
     return grid
 
 
 # Maybe add here a plot with the CH4-Framework RDF
 
-sizing_mode = 'fixed'
+sizing_mode = "fixed"
 cof_name = get_name_from_url()
 entry = get_data(cof_name, plot_info)
 
@@ -393,35 +492,45 @@ end "cifstring"
 
     df_tailcorrection, df_no_tailcorrection = get_results_df()
 
-    l = layout([
+    if cof_name in used_block:
+        plot_info_ = plot_info_blocked_pockets
+    elif cof_name in non_permeable:
+        plot_info_ = plot_info_non_permeable
+    else:
+        plot_info_ = plot_info
+
+    l = layout(
         [
-            [[applet], [btn_download_cif]],
-            [[table_widget(entry)], [btn_download_table]],
+            [
+                [[applet], [btn_download_cif]],
+                [[table_widget(entry)], [btn_download_table]],
+            ],
+            [
+                get_grids(
+                    cof_name,
+                    df_tailcorrection=df_tailcorrection,
+                    df_no_tailcorrection=df_no_tailcorrection,
+                )
+            ],
+            [rdf_plot(cof_name)],
+            [plot_info_],
         ],
-        [
-            get_grids(cof_name,
-                      df_tailcorrection=df_tailcorrection,
-                      df_no_tailcorrection=df_no_tailcorrection)
-        ],
-        [rdf_plot(cof_name)],
-        [plot_info],
-    ],
-               sizing_mode=sizing_mode)
+        sizing_mode=sizing_mode,
+    )
 
 else:
-    l = layout([
-        [
-            [[table_widget(entry)], [btn_download_table]],
-        ],
-        [plot_info_not_sampled],
-    ],
-               sizing_mode=sizing_mode)
+    l = layout(
+        [[[[table_widget(entry)], [btn_download_table]]],
+         [plot_info_not_sampled]],
+        sizing_mode=sizing_mode,
+    )
 
 # We add this as a tab
 tab = bmd.Panel(child=l, title=cof_name)
 tabs = bmd.widgets.Tabs(tabs=[tab])
 
 # Put the tabs in the current document for display
-curdoc(
-).title = "Applicability of tail-corrections in the molecular simulations of porous materials"
+curdoc().title = (
+    "Applicability of tail-corrections in the molecular simulations of porous materials"
+)
 curdoc().add_root(layout([html, tabs]))

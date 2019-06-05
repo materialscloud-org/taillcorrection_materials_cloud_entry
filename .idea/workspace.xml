@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="415236d6-5be2-483f-aab2-0d80f826ac5e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/detail/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/detail/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figure/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/figure/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figure/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/figure/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figure/query.py" beforeDir="false" afterPath="$PROJECT_DIR$/figure/query.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figure/static/columns.yml" beforeDir="false" afterPath="$PROJECT_DIR$/figure/static/columns.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure/static/description.html" beforeDir="false" afterPath="$PROJECT_DIR$/figure/static/description.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/figure/static/filters.yml" beforeDir="false" afterPath="$PROJECT_DIR$/figure/static/filters.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figure/static/presets.yml" beforeDir="false" afterPath="$PROJECT_DIR$/figure/static/presets.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prepare.sh" beforeDir="false" afterPath="$PROJECT_DIR$/prepare.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,11 +17,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/figure/main.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="38">
               <caret line="319" column="30" selection-start-line="319" selection-start-column="30" selection-end-line="319" selection-end-column="30" />
+              <folding>
+                <element signature="e#82#119#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/detail/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="104" column="14" selection-start-line="104" selection-start-column="14" selection-end-line="104" selection-end-column="14" />
               <folding>
                 <element signature="e#82#119#0" expanded="true" />
               </folding>
@@ -144,11 +150,11 @@
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/figure/static/columns.yml" />
         <option value="$PROJECT_DIR$/figure/static/filters.yml" />
-        <option value="$PROJECT_DIR$/detail/main.py" />
         <option value="$PROJECT_DIR$/figure/config.py" />
         <option value="$PROJECT_DIR$/figure/static/presets.yml" />
         <option value="$PROJECT_DIR$/figure/query.py" />
         <option value="$PROJECT_DIR$/figure/main.py" />
+        <option value="$PROJECT_DIR$/detail/main.py" />
       </list>
     </option>
   </component>
@@ -162,18 +168,38 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="2511" />
-    <option name="y" value="239" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-7" />
+    <option name="y" value="83" />
     <option name="width" value="1717" />
-    <option name="height" value="1138" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="structure-property-visualizer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="structure-property-visualizer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="structure-property-visualizer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="structure-property-visualizer" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="structure-property-visualizer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="structure-property-visualizer" type="462c0819:PsiDirectoryNode" />
+              <item name="detail" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope" />
     </panes>
   </component>
@@ -217,6 +243,7 @@
       <workItem from="1557240588197" duration="6000" />
       <workItem from="1557304753469" duration="617000" />
       <workItem from="1557332907257" duration="613000" />
+      <workItem from="1559769209206" duration="1842000" />
     </task>
     <task id="LOCAL-00001" summary="Starting to adjust to our needs. Will probably make two docker images. The first one, which is more important for Berend, is based on the PCA image. This will be this one. Then I will try to make plots based on data files for only the structures we sampled that show plots of the properties as a function of r_c. I think splitting it in two is the easiest way as the two plots require quite different data organizations.">
       <created>1556983250585</created>
@@ -299,12 +326,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57934000" />
+    <option name="totallyTimeSpent" value="59776000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="2511" y="239" width="1717" height="1138" extended-state="0" />
+    <frame x="0" y="25" width="1920" height="1055" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19210054" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17342582" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -319,7 +346,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32991612" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.30227947" />
+      <window_info anchor="bottom" id="Python Console" order="12" visible="true" weight="0.31101513" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -500,16 +527,6 @@
         <state relative-caret-position="-25313" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/detail/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2717">
-          <caret line="113" column="54" lean-forward="true" selection-start-line="113" selection-start-column="54" selection-end-line="113" selection-end-column="54" />
-          <folding>
-            <element signature="e#82#119#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/figure/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
@@ -572,6 +589,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/detail/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="104" column="14" selection-start-line="104" selection-start-column="14" selection-end-line="104" selection-end-column="14" />
+          <folding>
+            <element signature="e#82#119#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
