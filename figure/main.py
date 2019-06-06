@@ -23,7 +23,8 @@ from config import quantities, presets
 from figure.query import get_data_sqla as get_data
 from figure.query import data_empty
 
-html = bmd.Div(text=open(join(config.static_dir, "description.html")).read(), width=800)
+html = bmd.Div(text=open(join(config.static_dir, "description.html")).read(),
+               width=800)
 
 redraw_plot = True
 
@@ -111,17 +112,17 @@ def on_filter_change(attr, old, new):  # pylint: disable=unused-argument
 def get_slider(desc, range, default=None):
     if default is None:
         default = range
-    slider = RangeSlider(
-        title=desc, start=range[0], end=range[1], value=default, step=0.1
-    )
+    slider = RangeSlider(title=desc,
+                         start=range[0],
+                         end=range[1],
+                         value=default,
+                         step=0.1)
 
     slider.on_change("value", on_filter_change)
     return slider
 
 
-def get_select(
-    desc, values, default=None, labels=None
-):  # pylint: disable=unused-argument
+def get_select(desc, values, default=None, labels=None):  # pylint: disable=unused-argument
     if default is None:
         # by default, make all selections active
         default = list(range(len(values)))
@@ -153,7 +154,8 @@ for k in config.filter_list:
     elif v["type"] == "list":
         if "labels" not in v.keys():
             v["labels"] = None
-        filters_dict[k] = get_select(desc, v["values"], v["default"], v["labels"])
+        filters_dict[k] = get_select(desc, v["values"], v["default"],
+                                     v["labels"])
 
 # plot button, output, graph
 btn_plot = Button(label="Plot", button_type="primary")
@@ -196,10 +198,12 @@ def create_plot():
         paper_palette = list(config.group_dict.values())
         sample_palette = list(config.sampled_dict.values())
 
-        fill_color = factor_cmap("color", palette=paper_palette, factors=groups)
-        line_color = factor_cmap(
-            "color", palette=sample_palette, factors=["sampled", "not sampled"]
-        )
+        fill_color = factor_cmap("color",
+                                 palette=paper_palette,
+                                 factors=groups)
+        line_color = factor_cmap("color",
+                                 palette=sample_palette,
+                                 factors=["sampled", "not sampled"])
         p_new.circle(
             "x",
             "y",
@@ -227,11 +231,8 @@ def create_plot():
 p = create_plot()
 
 # inp_preset
-controls = (
-    [inp_x, inp_y, inp_clr]
-    + [_v for k, _v in filters_dict.items()]
-    + [btn_plot, plot_info]
-)
+controls = ([inp_x, inp_y, inp_clr] + [_v for k, _v in filters_dict.items()] +
+            [btn_plot, plot_info])
 
 
 def update_legends(ly):
@@ -253,11 +254,13 @@ def update_legends(ly):
     else:
         clr_val = "@color {}".format(q_clr["unit"])
         clr_label = "{} [{}]".format(q_clr["label"], q_clr["unit"])
-    hover.tooltips = [("name", "@name"), xhover, yhover, (q_clr["label"], clr_val)]
+    hover.tooltips = [("name", "@name"), xhover, yhover,
+                      (q_clr["label"], clr_val)]
 
     if inp_clr.value == "group":
         clr_label = "group"
-        hover.tooltips = [("name", "@name"), xhover, yhover, ("group", "@color")]
+        hover.tooltips = [("name", "@name"), xhover, yhover,
+                          ("group", "@color")]
     else:
         q_clr = quantities[inp_clr.value]
         clr_label = "{} [{}]".format(q_clr["label"], q_clr["unit"])

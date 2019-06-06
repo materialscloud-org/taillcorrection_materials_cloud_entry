@@ -58,7 +58,7 @@ def get_data_sqla(projections, sliders_dict, quantities, plot_info):
     y = list(map(float, y))
 
     sampled_ = [20 if s == "sampled" else 10 for s in sampled]
-    lw = [1 if s == "sampled" else 0.1 for s in sampled]
+    lw = [2 if s == "sampled" else 0.1 for s in sampled]
 
     if projections[2] == "group":
         # clrs = map(lambda clr: bondtypes.index(clr), clrs)

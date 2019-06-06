@@ -18,20 +18,23 @@ from import_db import get_results_dataframes_from_disk as get_results_df
 # from import_db import get_cif_content_from_os as get_cif_str
 from detail.query import get_sqlite_data as get_data
 
-html = bmd.Div(text=open(join(dirname(__file__), "description.html")).read(), width=800)
+html = bmd.Div(text=open(join(dirname(__file__), "description.html")).read(),
+               width=800)
 
 download_js = open(join(dirname(__file__), "static", "download.js")).read()
 
-plot_info = PreText(
-    text="Pore blocking is not relevant for this structure.", width=300, height=100
-)
+plot_info = PreText(text="Pore blocking is not relevant for this structure.",
+                    width=300,
+                    height=100)
 
 plot_info_blocked_pockets = PreText(
-    text="Pore blocking is relevant and used for this structure.", width=800, height=100
-)
+    text="Pore blocking is relevant and used for this structure.",
+    width=800,
+    height=100)
 
 plot_info_non_permeable = PreText(
-    text="This structure has no accessible pore volume. We show simulations without pore blocking. ",
+    text=
+    "This structure has no accessible pore volume. We show simulations without pore blocking. ",
     width=800,
     height=100,
 )
@@ -45,7 +48,9 @@ plot_info_not_sampled = PreText(
 btn_download_table = Button(label="Download json", button_type="primary")
 btn_download_cif = Button(label="Download cif", button_type="primary")
 
-zeolites = ["MTT", "GOO", "AFT", "SFN", "TSC", "PAU", "UEI", "EMT", "SFS", "MFI"]
+zeolites = [
+    "MTT", "GOO", "AFT", "SFN", "TSC", "PAU", "UEI", "EMT", "SFS", "MFI"
+]
 
 cofs = [
     "16411C2",
@@ -141,9 +146,14 @@ def get_name_from_url():
     return name
 
 
-def errorbar(
-    fig, x, y, xerr=None, yerr=None, color="#d62728", point_kwargs={}, error_kwargs={}
-):
+def errorbar(fig,
+             x,
+             y,
+             xerr=None,
+             yerr=None,
+             color="#d62728",
+             point_kwargs={},
+             error_kwargs={}):
     """https://stackoverflow.com/a/30538908"""
     fig.circle(x, y, color=color, **point_kwargs)
 
@@ -183,9 +193,8 @@ def table_widget(entry):
             entry_dict[new_key] = entry_dict.pop(prop)
 
     # order entry dict
-    entry_dict = OrderedDict(
-        [(k, entry_dict[k]) for k in sorted(list(entry_dict.keys()))]
-    )
+    entry_dict = OrderedDict([(k, entry_dict[k])
+                              for k in sorted(list(entry_dict.keys()))])
 
     data = dict(
         labels=[str(k) for k in entry_dict],
@@ -244,7 +253,8 @@ def get_grids(name, df_tailcorrection, df_no_tailcorrection):
     golden_ratio = 1.61803
     golden_ratio_reci = 1 / golden_ratio
 
-    data_no_tail_correction = df_no_tailcorrection[df_no_tailcorrection["name"] == name]
+    data_no_tail_correction = df_no_tailcorrection[df_no_tailcorrection["name"]
+                                                   == name]
     data_tail_correction = df_tailcorrection[df_tailcorrection["name"] == name]
 
     plot_width = 400
@@ -408,10 +418,10 @@ def get_grids(name, df_tailcorrection, df_no_tailcorrection):
     y8 = errorbar(
         p8,
         data_no_tail_correction["cutoff"],
-        data_no_tail_correction["loading_absolute_average_high_p"]
-        - data_no_tail_correction["loading_absolute_average_low_p"],
-        yerr=data_no_tail_correction["loading_absolute_dev_high_p"]
-        + data_no_tail_correction["loading_absolute_dev_low_p"],
+        data_no_tail_correction["loading_absolute_average_high_p"] -
+        data_no_tail_correction["loading_absolute_average_low_p"],
+        yerr=data_no_tail_correction["loading_absolute_dev_high_p"] +
+        data_no_tail_correction["loading_absolute_dev_low_p"],
     )
 
     p9 = figure(
@@ -427,10 +437,10 @@ def get_grids(name, df_tailcorrection, df_no_tailcorrection):
     y9 = errorbar(
         p9,
         data_tail_correction["cutoff"],
-        data_tail_correction["loading_absolute_average_high_p"]
-        - data_tail_correction["loading_absolute_average_low_p"],
-        yerr=data_tail_correction["loading_absolute_dev_high_p"]
-        + data_tail_correction["loading_absolute_dev_low_p"],
+        data_tail_correction["loading_absolute_average_high_p"] -
+        data_tail_correction["loading_absolute_average_low_p"],
+        yerr=data_tail_correction["loading_absolute_dev_high_p"] +
+        data_tail_correction["loading_absolute_dev_low_p"],
     )
 
     grid = gridplot(
@@ -464,18 +474,16 @@ if cof_name in allowed_names:
 load data "cifstring"
 {}
 end "cifstring"
-""".format(
-            cif_str
-        )
+""".format(cif_str)
         ## Note: Need PHP server for approach below to work
         #    script="""set antialiasDisplay ON;
         # load cif::{};
         # """.format(get_cif_url(entry.filename))
     )
 
-    btn_download_cif.callback = bmd.CustomJS(
-        args=dict(string=cif_str, filename=entry.filename), code=download_js
-    )
+    btn_download_cif.callback = bmd.CustomJS(args=dict(
+        string=cif_str, filename=entry.filename),
+                                             code=download_js)
     script_source = bmd.ColumnDataSource()
 
     applet = JSMol(
@@ -516,7 +524,8 @@ end "cifstring"
 
 else:
     l = layout(
-        [[[[table_widget(entry)], [btn_download_table]]], [plot_info_not_sampled]],
+        [[[[table_widget(entry)], [btn_download_table]]],
+         [plot_info_not_sampled]],
         sizing_mode=sizing_mode,
     )
 
