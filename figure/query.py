@@ -3,13 +3,14 @@
 from bokeh.models.widgets import RangeSlider, CheckboxButtonGroup
 from config import max_points
 import pandas as pd
+
 # pylint: disable=too-many-locals
-data_empty = dict(x=[0], y=[0], uuid=['1234'], color=[0], name=['no data'])
+data_empty = dict(x=[0], y=[0], uuid=["1234"], color=[0], name=["no data"])
 
 
 def get_data_sqla(projections, sliders_dict, quantities, plot_info):
     """Query database using SQLAlchemy.
-    
+
     Note: For efficiency, this uses the the sqlalchemy.sql interface which does
     not go via the (more convenient) ORM.
     """
@@ -25,7 +26,7 @@ def get_data_sqla(projections, sliders_dict, quantities, plot_info):
     filters = []
     for k, v in sliders_dict.items():
         if isinstance(v, RangeSlider):
-            if not v.value == quantities[k]['range']:
+            if not v.value == quantities[k]["range"]:
                 f = getattr(Table, k).between(v.value[0], v.value[1])
                 filters.append(f)
         elif isinstance(v, CheckboxButtonGroup):
@@ -44,19 +45,23 @@ def get_data_sqla(projections, sliders_dict, quantities, plot_info):
     elif nresults > max_points:
         results = results[:max_points]
         plot_info.text = "{} frameworks found.\nPlotting {}...".format(
-            nresults, max_points)
+            nresults, max_points
+        )
     else:
         plot_info.text = "{} frameworks found.\nPlotting {}...".format(
-            nresults, nresults)
+            nresults, nresults
+        )
 
     # x,y position
-    x, y, clrs, names, filenames = zip(*results)
+    x, y, clrs, sampled, names, filenames = zip(*results)
     x = list(map(float, x))
     y = list(map(float, y))
 
-    print(projections)
-    if projections[2] == 'group':
-        #clrs = map(lambda clr: bondtypes.index(clr), clrs)
+    sampled_ = [20 if s == "sampled" else 10 for s in sampled]
+    lw = [1 if s == "sampled" else 0.1 for s in sampled]
+
+    if projections[2] == "group":
+        # clrs = map(lambda clr: bondtypes.index(clr), clrs)
         clrs = list(clrs)
         # df = pd.DataFrame({
         #     'x': x,
@@ -79,13 +84,16 @@ def get_data_sqla(projections, sliders_dict, quantities, plot_info):
     else:
         clrs = list(map(float, clrs))
 
-    return dict(x=x, y=y, filename=filenames, color=clrs, name=names)
+    return dict(
+        x=x, y=y, filename=filenames, color=clrs, sampled=sampled_, name=names, lw=lw
+    )
 
 
 def get_data_aiida(projections, sliders_dict, quantities, plot_info):
     """Query the AiiDA database"""
     from aiida import load_dbenv, is_dbenv_loaded
     from aiida.backends import settings
+
     if not is_dbenv_loaded():
         load_dbenv(profile=settings.AIIDADB_PROFILE)
     from aiida.orm.querybuilder import QueryBuilder
@@ -96,26 +104,19 @@ def get_data_aiida(projections, sliders_dict, quantities, plot_info):
     def add_range_filter(bounds, label):
         # a bit of cheating until this is resolved
         # https://github.com/aiidateam/aiida_core/issues/1389
-        #filters['attributes.'+label] = {'>=':bounds[0]}
-        filters['attributes.' + label] = {
-            'and': [{
-                '>=': bounds[0]
-            }, {
-                '<': bounds[1]
-            }]
-        }
+        # filters['attributes.'+label] = {'>=':bounds[0]}
+        filters["attributes." + label] = {"and": [{">=": bounds[0]}, {"<": bounds[1]}]}
 
     for k, v in sliders_dict.items():
         # Note: filtering is costly, avoid if possible
-        if not v.value == quantities[k]['range']:
+        if not v.value == quantities[k]["range"]:
             add_range_filter(v.value, k)
 
     qb = QueryBuilder()
     qb.append(
         ParameterData,
         filters=filters,
-        project=['attributes.' + p
-                 for p in projections] + ['uuid', 'extras.cif_uuid'],
+        project=["attributes." + p for p in projections] + ["uuid", "extras.cif_uuid"],
     )
 
     nresults = qb.count()
@@ -133,8 +134,8 @@ def get_data_aiida(projections, sliders_dict, quantities, plot_info):
     cif_uuids = map(str, cif_uuids)
     uuids = map(str, uuids)
 
-    if projections[2] == 'group':
-        #clrs = map(lambda clr: bondtypes.index(clr), clrs)
+    if projections[2] == "group":
+        # clrs = map(lambda clr: bondtypes.index(clr), clrs)
         clrs = map(str, clrs)
     else:
         clrs = map(float, clrs)
