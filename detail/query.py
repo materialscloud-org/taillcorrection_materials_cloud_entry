@@ -20,33 +20,3 @@ def get_sqlite_data(name, plot_info):
         plot_info.text = "No matching structure found."
         return None
     return query.one()
-
-
-def get_data_aiida(cif_uuid, plot_info):
-    """Query the AiiDA database"""
-    from aiida import load_dbenv, is_dbenv_loaded
-    from aiida.backends import settings
-    if not is_dbenv_loaded():
-        load_dbenv(profile=settings.AIIDADB_PROFILE)
-    from aiida.orm.querybuilder import QueryBuilder
-    from aiida.orm.data.parameter import ParameterData
-    from aiida.orm.data.cif import CifData
-
-    qb = QueryBuilder()
-    qb.append(CifData,
-              filters={'uuid': {
-                  '==': cif_uuid
-              }},
-              tag='structures',
-              project='*')
-    qb.append(
-        ParameterData,
-        descendant_of='structures',
-        project='*',
-    )
-
-    nresults = qb.count()
-    if nresults == 0:
-        plot_info.text = "No matching structure found."
-        return None
-    return qb.one()

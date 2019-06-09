@@ -4,13 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/figure/query.py" line="60" mnemonic="7" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="415236d6-5be2-483f-aab2-0d80f826ac5e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data.tar.xz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prepare.sh" beforeDir="false" afterPath="$PROJECT_DIR$/prepare.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-    </list>
+    <list default="true" id="415236d6-5be2-483f-aab2-0d80f826ac5e" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,8 +84,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/prepare.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+            <state relative-caret-position="187">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
         </entry>
@@ -164,9 +158,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1955" />
-    <option name="width" value="1626" />
-    <option name="height" value="938" />
+    <option name="y" value="11" />
+    <option name="width" value="720" />
+    <option name="height" value="1268" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -267,7 +261,7 @@
       <workItem from="1557304753469" duration="617000" />
       <workItem from="1557332907257" duration="613000" />
       <workItem from="1559769209206" duration="3727000" />
-      <workItem from="1560029875956" duration="319000" />
+      <workItem from="1560029875956" duration="2354000" />
     </task>
     <task id="LOCAL-00001" summary="Starting to adjust to our needs. Will probably make two docker images. The first one, which is more important for Berend, is based on the PCA image. This will be this one. Then I will try to make plots based on data files for only the structures we sampled that show plots of the properties as a function of r_c. I think splitting it in two is the easiest way as the two plots require quite different data organizations.">
       <created>1556983250585</created>
@@ -353,17 +347,23 @@
       <option name="project" value="LOCAL" />
       <updated>1559771213766</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="starting changes discussed with Leo&#10;&#10;- upgrading bokeh version&#10;- extract data in prepare script">
+      <created>1560030347426</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1560030347426</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61980000" />
+    <option name="totallyTimeSpent" value="64015000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="-2" width="1920" height="1082" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="-5" width="2048" height="1127" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17342582" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16233766" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -373,17 +373,17 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" />
+      <window_info anchor="bottom" id="Docker" order="7" visible="true" weight="0.31462926" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32991612" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.24868836" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.24868836" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.1072572" />
+      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.1003996" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -403,7 +403,8 @@
     <MESSAGE value="fixed version pinning. Leo's extension does not work with bokeh 1." />
     <MESSAGE value="fixed ordering and a lot of other stuff" />
     <MESSAGE value="updated data." />
-    <option name="LAST_COMMIT_MESSAGE" value="updated data." />
+    <MESSAGE value="starting changes discussed with Leo&#10;&#10;- upgrading bokeh version&#10;- extract data in prepare script" />
+    <option name="LAST_COMMIT_MESSAGE" value="starting changes discussed with Leo&#10;&#10;- upgrading bokeh version&#10;- extract data in prepare script" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -633,8 +634,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/prepare.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+        <state relative-caret-position="187">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>

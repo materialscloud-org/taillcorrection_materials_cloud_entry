@@ -18,7 +18,7 @@ rm -r jmol-14.29.22
 #   wget ${base_url}/properties.csv
 
 # Extract data
-tar xf data.tar.xz && rm data.tar.gz
+tar xf data.tar.xz && rm data.tar.xz
 
 #cd ..
 
