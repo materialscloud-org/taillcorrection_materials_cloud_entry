@@ -12,7 +12,7 @@ RUN unzip jmol.zip && cd jmol-14.29.22 && unzip jsmol.zip
 RUN apt-get update && apt-get install -y --no-install-recommends nodejs
 
 # Copy bokeh app
-WORKDIR /project/discover-cofs
+WORKDIR /project/discover-tc-applicability
 COPY figure ./figure
 COPY detail ./detail
 COPY select-figure ./select-figure
