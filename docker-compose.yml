@@ -3,7 +3,10 @@ version: '2'
 services:
   bokeh:
     restart: always
-    build: .
+    build:
+      context: .
+      args:
+        BOKEH_PREFIX: /tc-applicability
     image: discover-tc-applicability:master
     command: ["/opt/serve-app.sh"]
     environment:
