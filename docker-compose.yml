@@ -3,14 +3,17 @@ version: '2'
 services:
   bokeh:
     restart: always
-    build: .
-    image: discover-cofs:master
+    build:
+      context: .
+      args:
+        BOKEH_PREFIX: /tc-applicability
+    image: discover-tc-applicability:master
     command: ["/opt/serve-app.sh"]
     environment:
       PYTHONPATH: '/project'
       SHELL: '/bin/bash'
 
     volumes:
-     - './data:/project/discover-cofs/data'
+     - './data:/project/discover-tc-applicability/data'
     ports:
-      - '3245:5006'
+      - '3251:5006'
