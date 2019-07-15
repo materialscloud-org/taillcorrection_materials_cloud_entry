@@ -12,7 +12,7 @@ RUN unzip jmol.zip && cd jmol-14.29.22 && unzip jsmol.zip
 RUN apt-get update && apt-get install -y --no-install-recommends nodejs
 
 # Copy bokeh app
-WORKDIR /project/discover-cofs
+WORKDIR /project/discover-tc-applicability
 COPY figure ./figure
 COPY detail ./detail
 COPY select-figure ./select-figure
@@ -24,6 +24,11 @@ COPY serve-app.sh /opt/
 RUN chown -R scientist:scientist /project
 
 USER scientist
+
+# This environment variable can be changed at build time:
+#   docker build  --build-arg BOKEH_PREFIX=/abc
+ARG BOKEH_PREFIX="abc"
+ENV BOKEH_PREFIX $BOKEH_PREFIX
 
 # start bokeh server
 EXPOSE 5006
