@@ -66,6 +66,12 @@ citation_mof = Div(
     height=100,
 )
 
+citation_else = Div(
+    text=" ",
+    width=800,
+    height=100,
+)
+
 btn_download_table = Button(label="Download json", button_type="primary")
 btn_download_cif = Button(label="Download cif", button_type="primary")
 
@@ -530,6 +536,8 @@ end "cifstring"
         citation = citation_zeolite
     elif cof_name in mofs:
         citation = citation_mof
+    else:
+        citation = citation_else
 
     l = layout(
         [[
